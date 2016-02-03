@@ -1,7 +1,7 @@
 require 'rest-client'
-require './lib/tokenmanager.rb'
-require './lib/error.rb'
-require './lib/utils.rb'
+require 'paystack/tokenmanager.rb'
+require 'paystack/error.rb'
+require 'paystack/utils.rb'
 
 
 class Paystack

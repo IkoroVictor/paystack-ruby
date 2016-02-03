@@ -1,6 +1,7 @@
 require 'rest-client'
-require './crypto'
-require './api'
+require 'paystack/crypto.rb'
+require 'paystack/api.rb'
+require 'paystack/card.rb'
 
 module TokenManager
 
@@ -16,7 +17,7 @@ module TokenManager
 	
 
 	def concatCardFields(card)
-		raise PayStackCardError, 'Invalid Card' unless (!card.nil? && card.instanceof? Card) 
+		raise PayStackCardError, 'Invalid Card' unless (!card.nil? && card.instanceof?(Card)) 
 
 		number = Utils.nullifyString(card.number)
 		cvc = card.cvc
@@ -51,4 +52,5 @@ module TokenManager
 		return token
 
 	end
+end
 

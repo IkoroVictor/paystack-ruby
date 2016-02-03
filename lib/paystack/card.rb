@@ -1,7 +1,7 @@
-require './utils'
+require 'paystack/utils.rb'
 
 class Card
-	attr_reader :name, :number,:cvc,:expiryMonth,:expiryYear, :addressLine1,:addressLine2, :addressLine3, :addressLine4, :addressCountry, :addressPostalCode :email, :cardCountry, :cardIssuer
+	attr_reader :name, :number,:cvc,:expiryMonth,:expiryYear, :addressLine1,:addressLine2, :addressLine3, :addressLine4, :addressCountry, :addressPostalCode, :email, :cardCountry, :cardIssuer
 
 	MAX_DINERS_CARD_LENGTH  = 14
 	MAX_AMERICAN_EXPRESS_CARD_LENGTH  = 15
@@ -36,25 +36,25 @@ class Card
 		if(number == nil)
 			return 'invalid'
 		end
-		if(number ~= PATTERN_VISA) != nil
+		if(number =~ PATTERN_VISA) != nil
 			return 'visa'
 		end
 
-		if(number ~= PATTERN_MASTERCARD) != nil
+		if(number =~ PATTERN_MASTERCARD) != nil
 			return 'mastercard'
 		end
 
-		if(number ~= PATTERN_AMERICAN_EXPRESS) != nil
+		if(number =~ PATTERN_AMERICAN_EXPRESS) != nil
 			return 'american_express'
 		end
 
-		if(number ~= PATTERN_DINERS_CLUB)
+		if(number =~ PATTERN_DINERS_CLUB)
 			return 'diners'
 		end
-		if(number ~= PATTERN_DISCOVER)
+		if(number =~ PATTERN_DISCOVER)
 			return 'discover'
 		end
-		if(number ~= PATTERN_JCB)
+		if(number =~ PATTERN_JCB)
 			return 'jcb'
 		end
 		return 'unknown'		
@@ -63,7 +63,7 @@ class Card
 
 
 
-	private
+	
 
 	def isValidNumber
 		if(Utils.isEmpty(@number)) 
@@ -86,14 +86,13 @@ class Card
 	end
 
 	def isValidCVC
-		if(@cvc.eq "")
+		if(@cvc.eq(""))
 			return false
 		end
 		cvc = @cvc.strip
 		cvc_len = cvc.length
 
-		validLength = ((cvc_len >= 3 && cvc_len <= 4) || (@cardIssuer.eq('american_express') && cvc_len == 4) ||(!@cardIssuer.eq('american_express') && cvc_len == 3)
-		return !(!Utils.isWholePositiveNumber(cvc) || !validLength)
+		validLength = ((cvc_len >= 3 && cvc_len <= 4) || (@cardIssuer.eq('american_express') && cvc_len == 4) ||(!@cardIssuer.eq('american_express') && cvc_len == 3))
 
 	end
 

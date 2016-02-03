@@ -1,5 +1,5 @@
 
-require './error.rb'
+require 'paystack/error.rb'
 
 module Utils
 	def nullifyString(value)
