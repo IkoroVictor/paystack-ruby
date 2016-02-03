@@ -14,7 +14,7 @@ class Card
 	PATTERN_DISCOVER = /^6(?:011|5[0-9]{2})[0-9]{3,}$/       
 	PATTERN_JCB = /^(?:2131|1800|35[0-9]{3})[0-9]{3,}/       
 	
-	def initialize(*args)
+	def initialize(args = {})
 		@name = Utils.nullifyString(args[:name])
 		@number = Utils.nullifyString(args[:number])
 		@cvc = Utils.nullifyString(args[:cvc])
@@ -69,15 +69,17 @@ class Card
 		if(Utils.isEmpty(@number)) 
 			return false
 		end
-		formatted_number = @number.gsub!(/\s+|-/).strip
+		formatted_number = @number.gsub(/\s+|-/) {|s| '' }.strip
+		
 		if(Utils.isEmpty(formatted_number) || !Utils.isWholePositiveNumber(formatted_number) || !Utils.isLuthValidNumber(formatted_number))
+			puts 'theother'
 			return false
 		end
-		if Card.getCardType(formatted_number).eq('diners') 
+		if Card.getCardType(formatted_number).eql?('diners') 
 			return (formatted_number.length == MAX_DINERS_CARD_LENGTH)
 		end
 
-		if Card.getCardType(formatted_number).eq('american_express') 
+		if Card.getCardType(formatted_number).eql?('american_express') 
 			return (formatted_number.length == MAX_AMERICAN_EXPRESS_CARD_LENGTH)
 		end
 
@@ -86,17 +88,17 @@ class Card
 	end
 
 	def isValidCVC
-		if(@cvc.eq(""))
+		if(@cvc.eql?(""))
 			return false
 		end
 		cvc = @cvc.strip
 		cvc_len = cvc.length
 
-		validLength = ((cvc_len >= 3 && cvc_len <= 4) || (@cardIssuer.eq('american_express') && cvc_len == 4) ||(!@cardIssuer.eq('american_express') && cvc_len == 3))
+		validLength = ((cvc_len >= 3 && cvc_len <= 4) || (@cardIssuer.eql?('american_express') && cvc_len == 4) ||(!@cardIssuer.eql?('american_express') && cvc_len == 3))
 
 	end
 
-	def isValidExpireDate()
+	def isValidExpiryDate()
 		return !(@expiryMonth == nil || @expiryYear == nil) && Utils.hasCardExpired(@expiryYear, @expiryMonth);
 	end
 

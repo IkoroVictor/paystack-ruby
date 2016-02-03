@@ -2,21 +2,22 @@
 require 'paystack/error.rb'
 
 module Utils
-	def nullifyString(value)
-		if(value.strip.eq "" || value.nil?)
+	
+	def Utils.nullifyString(value)
+		if(value.strip.eql? "" || value.nil?)
 			return nil
 		end
 		return value;
 	end
 
-	def isWholePositiveNumber(value)
+	def Utils.isWholePositiveNumber(value)
 		if(value == nil)
 			return false
 		end
-		length = value.strip.length;
+		length = value.length;
 
 		for i in 0..(length-1)
-			c = number[i]
+			c = value[i]
 
 			if((c =~ /[[:digit:]]/) == nil)
 				return false
@@ -25,12 +26,12 @@ module Utils
 		return true
 	end
 
-	def isLuthValidNumber(number)
+	def Utils.isLuthValidNumber(number)
 		sum = 0
 		length = number.strip.length;
 
 		for i in 0..(length-1)
-			c = number[i]
+			c = number[length - 1 -i]
 
 			if((c =~ /[[:digit:]]/) == nil)
 				return false
@@ -45,22 +46,22 @@ module Utils
 		return (sum % 10 == 0)
 	end
 
-	def isEmpty(value)
-		return (value.nil? || value.trim.eq(""))
+	def Utils.isEmpty(value)
+		return (value.nil? || value.strip.eql?(""))
 	end
 
-	def hasYearPassed(year)
+	def Utils.hasYearPassed(year)
 		return year < Time.new.year
 	end
-	def hasMonthPassed(year, month)
+	def Utils.hasMonthPassed(year, month)
 		t = Time.new
-		return hasYearPassed(year) || year_int == t.year && month < (t.month)
+		return hasYearPassed(year) || year == t.year && month < (t.month)
 	end
 
-	def hasCardExpired(year, month)
+	def Utils.hasCardExpired(year, month)
 		# Normalize Year value e.g 14 becomes 2014 or 2114  etc.
 		year_int = year.strip.to_i
-		if(year < 100 && year >= 0)
+		if(year_int < 100 && year_int >= 0)
 			cal_year = Time.new.year.to_s
 			year_int = ("#{cal_year[0..1]}#{year.strip}").to_i
 		end
