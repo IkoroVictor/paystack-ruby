@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Victor"]
   spec.email         = ["ikoro.victor@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{PayStack.co gem for Ruby/Rails}
+  spec.description   = %q{Client Library Gem for PayStack.co}
+  spec.homepage      = "https://github.com/IkoroVictor/paystack-ruby"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -27,6 +27,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  #Dev dependencies
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec"
+  
+  #Dependencies
+  spec.add_dependency "rest-client", '~> 1.8'
+  
 end
