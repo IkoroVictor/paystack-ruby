@@ -1,5 +1,9 @@
 # Paystack
 
+[![Gem Downloads](https://img.shields.io/gem/dt/rails.svg)](https://rubygems.org/gems/paystack-ruby)
+
+A ruby gem for easy integration of Paystack with your Ruby / Rails application. 
+
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/paystack`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
@@ -22,7 +26,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### 1. Instantiate Paystack Object
+
+    paystack = Paystack.new(public_key, secret_key)
+
+A more secure way is to set your public and private keys as environmental variables `PAYSTACK_PUBLIC_KEY` and `PAYSTACK_PRIVATE_KEY` respectively. Then you instantiate without parameters
+
+```ruby
+
+	paystack =  Paystack.new
+
+```
+
+Methods available in the Paystack class include
+
+
+
+### 2. Instantiate a Card object
+
+```ruby
+	card = new PaystackCard(
+		:number => "304402040400400022", 
+		:cvc => "888", 
+		:expiryMonth => "07",
+		:expiryYear => "19"
+		)
+```
+
+
+
 
 ## Development
 
