@@ -5,13 +5,19 @@ require 'paystack/utils.rb'
 
 
 class Paystack
-	attr_reader :public_key
+	attr_reader :public_key, :private_key
 
-	def initialize paystack_public_key=nil
+	def initialize paystack_public_key=nil, paystack_private_key=nil
 		if(paystack_public_key.nil?)
 			@public_key = ENV['PAYSTACK_PUBLIC_KEY']
 		else
 			@public_key = paystack_public_key
+		end
+
+		if(paystack_private_key.nil?)
+			@public_key = ENV['PAYSTACK_PRIVATE_KEY']
+		else
+			@public_key = paystack_private_key
 		end
 	end
 
@@ -23,7 +29,7 @@ class Paystack
 		@public_key = public_key
 	end
 
-	def chargeToken(token, amount, *args)
+	def chargeToken(token, amount,args = {})
 		token = token;
 		amount = amount
 		email = args[:email]
@@ -31,23 +37,19 @@ class Paystack
 		result = nil;
 		
 		begin
-			response =  RestClient.post API.CHARGE_TOKEN_URL, {:token => token, :amount => amount, :email => email, :reference => reference}
+			response =  RestClient.post API::CHARGE_TOKEN_URL, {:token => token, :amount => amount, :email => email, :reference => reference}.to_json, :content_type => :json, :accept => :json
 			unless (response.code == 200 || response.code == 201)
-					throw PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 			end
 			result = JSON.parse(response.body)
 			unless(result['status'] != 0 )
-				throw PayStackServerError.new(response), "Server Message: #{result['message']}"
+				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
 			end
 
 		rescue JSON::ParserError => jsonerr
-			throw PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
-		rescue => e
-			if(e.response.nil?)
-				throw e
-				return
-			end
+		rescue PayStackServerError => e
 			Utils.serverErrorHandler(e)
 		end	
 		return result

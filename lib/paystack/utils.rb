@@ -75,23 +75,24 @@ module Utils
 
 
 
-	def serverErrorHandler(e)
-		if(e.response.nil?)
-			throw e
+	def Utils.serverErrorHandler(e)
+
+		if(e.response == nil)
+			raise e
 			return
 		end
 		error = PayStackServerError.new(e.response);
 		case e.response.code
 				when 400
-					throw error, "HTTP Code 400: A validation or client side error occurred and the request was not fulfilled. "
+					raise error, "HTTP Code 400: A validation or client side error occurred and the request was not fulfilled. "
 				when 401
-					throw error, "HTTP Code 401: The request was not authorized. This can be triggered by passing an invalid secret key in the authorization header or the lack of one"
+					raise error, "HTTP Code 401: The request was not authorized. This can be triggered by passing an invalid secret key in the authorization header or the lack of one"
 				when 404
-					throw error, "HTTP Code 404: Request could not be fulfilled as the request resource does not exist."
+					raise error, "HTTP Code 404: Request could not be fulfilled as the request resource does not exist."
 				when 500, 501,502,503,504
-					throw error, "HTTP Code #{e.response.code}: Request could not be fulfilled due to an error on Paystack's end. This shouldn't happen so please report as soon as you encounter any instance of this."
+					raise error, "HTTP Code #{e.response.code}: Request could not be fulfilled due to an error on Paystack's end. This shouldn't happen so please report as soon as you encounter any instance of this."
 				else
-					throw error, "HTTP Code #{e.response.code}: #{e.response.body}"
+					raise error, "HTTP Code #{e.response.code}: #{e.response.body}"
 					
 				end
 

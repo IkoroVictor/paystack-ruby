@@ -1,6 +1,6 @@
 require 'paystack/utils.rb'
 
-class Card
+class PaystackCard
 	attr_reader :name, :number,:cvc,:expiryMonth,:expiryYear, :addressLine1,:addressLine2, :addressLine3, :addressLine4, :addressCountry, :addressPostalCode, :email, :cardCountry, :cardIssuer
 
 	MAX_DINERS_CARD_LENGTH  = 14
@@ -20,7 +20,7 @@ class Card
 		@cvc = Utils.nullifyString(args[:cvc])
 		@expiryMonth =  Utils.nullifyString(args[:expiryMonth])
 		@expiryYear = Utils.nullifyString(args[:expiryYear])
-		@cardIssuer = Card.getCardType(@number)
+		@cardIssuer = PaystackCard.getCardType(@number)
 	end
 
 	def isValidCard()
@@ -32,7 +32,7 @@ class Card
     
 	end
 
-	def Card.getCardType(number)
+	def PaystackCard.getCardType(number)
 		if(number == nil)
 			return 'invalid'
 		end
@@ -72,14 +72,14 @@ class Card
 		formatted_number = @number.gsub(/\s+|-/) {|s| '' }.strip
 		
 		if(Utils.isEmpty(formatted_number) || !Utils.isWholePositiveNumber(formatted_number) || !Utils.isLuthValidNumber(formatted_number))
-			puts 'theother'
+	
 			return false
 		end
-		if Card.getCardType(formatted_number).eql?('diners') 
+		if PaystackCard.getCardType(formatted_number).eql?('diners') 
 			return (formatted_number.length == MAX_DINERS_CARD_LENGTH)
 		end
 
-		if Card.getCardType(formatted_number).eql?('american_express') 
+		if PaystackCard.getCardType(formatted_number).eql?('american_express') 
 			return (formatted_number.length == MAX_AMERICAN_EXPRESS_CARD_LENGTH)
 		end
 
