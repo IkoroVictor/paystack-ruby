@@ -1,6 +1,5 @@
 # Paystack
 
-[![Gem Downloads](https://img.shields.io/gem/dt/rails.svg)](https://rubygems.org/gems/paystack-ruby)
 
 A ruby gem for easy integration of Paystack with your Ruby / Rails application. 
 
