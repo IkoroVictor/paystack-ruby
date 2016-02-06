@@ -1,7 +1,7 @@
 require 'rest-client'
-require 'paystack/tokenmanager.rb'
+require 'paystack/modules/tokenmanager.rb'
 require 'paystack/error.rb'
-require 'paystack/utils.rb'
+require 'paystack/utils/utils.rb'
 
 
 class Paystack
@@ -26,6 +26,10 @@ class Paystack
 	end
 
 	def setPublicKey public_key
+		@public_key = public_key
+	end
+
+	def setPrivateKey public_key
 		@public_key = public_key
 	end
 

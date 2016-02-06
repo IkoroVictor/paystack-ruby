@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'paystack/card.rb'
+require 'paystack/models/card.rb'
 
 
 describe PaystackCard do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'paystack.rb'
-require 'paystack/card.rb'
+require 'paystack/models/card.rb'
 
 describe Paystack do
 	it "should create a valid object" do
@@ -24,9 +24,10 @@ describe Paystack do
 		card = PaystackCard.new(:name => 'Victor Ikoro', :number => '4123450131001381', :cvc => '883', :expiryMonth  => '09', :expiryYear => '19')
 		paystack = Paystack.new(public_test_key, private_test_key)
 		token = paystack.getToken(card)
+		puts token
 		expect(token.nil?).to eq false
 
-		result = paystack.chargeToken(token[:token], 100000.00, :email => "ikoro.victor@gmail.com", :reference => "rsmkmomczomcomc")
+		result = paystack.chargeToken(token[:token], 100000.00, :email => "ikoro.victor@gmail.com", :reference => Random.new_seed.to_s)
 		expect(result.nil?).to eq false
 	end
 

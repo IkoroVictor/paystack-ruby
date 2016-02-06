@@ -1,4 +1,4 @@
-require 'paystack/utils.rb'
+require 'paystack/utils/utils.rb'
 
 class PaystackCard
 	attr_reader :name, :number,:cvc,:expiryMonth,:expiryYear, :addressLine1,:addressLine2, :addressLine3, :addressLine4, :addressCountry, :addressPostalCode, :email, :cardCountry, :cardIssuer
