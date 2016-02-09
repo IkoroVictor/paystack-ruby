@@ -1,7 +1,7 @@
 require 'rest-client'
 require 'paystack/modules/crypto.rb'
 require 'paystack/modules/api.rb'
-require 'paystack/models/card.rb'
+require 'paystack/objects/card.rb'
 
 module TokenManager
 
