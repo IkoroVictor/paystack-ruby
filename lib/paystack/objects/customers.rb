@@ -20,7 +20,7 @@ class PaystackCustomers < PaystackBaseObject
 
 
 	def PaystackCustomers.create(paystackObj, data)
-		initPostRequest(paystackObj,"#{API::CUSTOMER_PATH}/create",  data)
+		initPostRequest(paystackObj,"#{API::CUSTOMER_PATH}",  data)
 	end
 
 	def PaystackCustomers.update(paystackObj, customer_id, data)
