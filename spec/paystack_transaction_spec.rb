@@ -56,7 +56,7 @@ describe PaystackTransaction do
 		transaction = PaystackTransaction.new(paystack)
 		expect(transaction.nil?).to eq false
 		totals =  transaction.totals(1)
-		puts totals
+		#puts totals
 		expect(totals.nil?).to eq false
 	end
 
