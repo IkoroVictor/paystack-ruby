@@ -19,16 +19,4 @@ describe Paystack do
 		expect(token.nil?).to eq false
 	end
 
-	it "should generate a valid token and charge client using token" do
-		
-		card = PaystackCard.new(:name => 'Victor Ikoro', :number => '4123450131001381', :cvc => '883', :expiryMonth  => '09', :expiryYear => '19')
-		paystack = Paystack.new(public_test_key, private_test_key)
-		token = paystack.getToken(card)
-		puts token
-		expect(token.nil?).to eq false
-
-		result = paystack.chargeToken(token[:token], 100000.00, :email => "ikoro.victor@gmail.com", :reference => Random.new_seed.to_s)
-		expect(result.nil?).to eq false
-	end
-
 end

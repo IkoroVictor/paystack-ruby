@@ -69,8 +69,25 @@ describe PaystackTransactions do
 		expect(token.nil?).to eq false
 		transaction = PaystackTransactions.new(paystack)
 		result = transaction.chargeToken(token[:token], 100000.00, :email => "ikoro.victor@gmail.com", :reference => Random.new_seed.to_s)
+		#puts result
+		expect(result.nil?).to eq false
+	end
+
+	it "should recharge an authorization for returning customers" do
+		
+		card = PaystackCard.new(:name => 'Victor Ikoro', :number => '4123450131001381', :cvc => '883', :expiryMonth  => '09', :expiryYear => '19')
+		paystack = Paystack.new(public_test_key, private_test_key)
+		token = paystack.getToken(card)
+		puts token
+		expect(token.nil?).to eq false
+		transaction = PaystackTransactions.new(paystack)
+		charge = transaction.chargeToken(token[:token], 100000.00, :email => "ikoro.victor@gmail.com", :reference => Random.new_seed.to_s)
+		#puts charge
+		expect(charge.nil?).to eq false
+		result = transaction.chargeAuthorization(charge['data']['authorization']['authorization_code'], charge['data']['customer']['email'], 2000, :reference => Random.new_seed.to_s )
 		puts result
 		expect(result.nil?).to eq false
+		
 	end
 
 end

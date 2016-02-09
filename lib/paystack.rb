@@ -33,30 +33,30 @@ class Paystack
 		@public_key = public_key
 	end
 
-	def chargeToken(token, amount,args = {})
-		token = token;
-		amount = amount
-		email = args[:email]
-		reference = args[:reference]
-		result = nil;
-		
-		begin
-			response =  RestClient.post "#{API::BASE_URL}#{API::TRANSACTION_PATH}/charge_token", {:token => token, :amount => amount, :email => email, :reference => reference}.to_json, :Authorization  => "Bearer #{@private_key}", :content_type => :json, :accept => :json
-			unless (response.code == 200 || response.code == 201)
-					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
-			end
-			result = JSON.parse(response.body)
-			unless(result['status'] != 0 )
-				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
-			end
-
-		rescue JSON::ParserError => jsonerr
-			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
-
-		rescue PayStackServerError => e
-			Utils.serverErrorHandler(e)
-		end	
-		return result
-	end
+#	def chargeToken(token, amount,args = {})
+#		token = token;
+#		amount = amount
+#		email = args[:email]
+#		reference = args[:reference]
+#		result = nil;
+#		
+#		begin
+#			response =  RestClient.post "#{API::BASE_URL}#{API::TRANSACTION_PATH}/charge_token", {:token => token, :amount => amount, :email => email, :reference => reference}.to_json, :Authorization  => "Bearer #{@private_key}", :content_type => :json, :accept => :json
+#			unless (response.code == 200 || response.code == 201)
+#					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+#			end
+#			result = JSON.parse(response.body)
+#			unless(result['status'] != 0 )
+#				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
+#			end
+#
+#		rescue JSON::ParserError => jsonerr
+#			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+#
+#		rescue PayStackServerError => e
+#			Utils.serverErrorHandler(e)
+#		end	
+#		return result
+#	end
 
 end

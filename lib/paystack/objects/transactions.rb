@@ -22,9 +22,12 @@ class PaystackTransactions < PaystackBaseObject
 		return PaystackTransactions.chargeToken(@paystack,token, amount, args)
 	end
 
+	def  chargeAuthorization(authorization_code, email,  amount,args = {})
+		return PaystackTransactions.chargeAuthorization(@paystack,authorization_code,email, amount, args)
+	end
+
 
 # => Public Static methods
-
 
 	def PaystackTransactions.list(paystackObj, page=1)
 		
@@ -47,7 +50,10 @@ class PaystackTransactions < PaystackBaseObject
 	def PaystackTransactions.chargeToken(paystackObj,token, amount,args = {})
 		hash = {:token => token, :amount => amount}.merge(args)
 		initPostRequest(paystackObj,"#{API::TRANSACTION_PATH}/charge_token",  hash, true)
-
+	end
+	def PaystackTransactions.chargeAuthorization(paystackObj,authorization_code,email,  amount,args = {})
+		hash = {:authorization_code => authorization_code, :amount => amount, :email => email}.merge(args)
+		initPostRequest(paystackObj,"#{API::TRANSACTION_PATH}/charge_authorization",  hash, true)
 	end
 
  
