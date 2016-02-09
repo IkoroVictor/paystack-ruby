@@ -1,7 +1,7 @@
 module API
-	BASE_URL = "https://standard.paystack.co"
-	TOKEN_URL ='/bosco/createmobiletoken'
-	CHARGE_TOKEN_URL = "https://api.paystack.co/transaction/charge_token"
-	CHARGE_AUTHORIZATION_URL = "https://api.paystack.co/transaction/charge_authorization"
-
+	BASE_URL = "https://api.paystack.co"
+	TOKEN_URL ='https://standard.paystack.co/bosco/createmobiletoken'
+	TRANSACTION_PATH = "/transaction"
+	PLAN_PATH = "/plan"
+	CUSTOMER_PATH = "/customer"
 end
