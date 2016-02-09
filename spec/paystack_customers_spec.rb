@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'paystack/models/customer.rb'
+require 'paystack/objects/customers.rb'
 require 'paystack.rb'
 
 public_test_key = "pk_test_ea7c71f838c766922873f1dd3cc529afe13da1c0"

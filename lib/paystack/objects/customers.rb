@@ -31,7 +31,7 @@ class PaystackCustomers < PaystackBaseObject
 		initGetRequest(paystackObj, "#{API::CUSTOMER_PATH}/#{customer_id}")
 	end
 
-	def PaystackCustomers.get(paystackObj, page=1)
+	def PaystackCustomers.list(paystackObj, page=1)
 		initGetRequest(paystackObj, "#{API::CUSTOMER_PATH}?page=#{page}")
 	end
 end
