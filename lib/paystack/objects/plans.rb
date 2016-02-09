@@ -21,7 +21,7 @@ class PaystackPlans < PaystackBaseObject
 
 
 	def PaystackPlans.create(paystackObj, data)
-		initPostRequest(paystackObj,"#{API::PLAN_PATH}/create",  data)
+		initPostRequest(paystackObj,"#{API::PLAN_PATH}",  data)
 	end
 
 	def PaystackPlans.update(paystackObj, plan_id, data)
@@ -32,7 +32,7 @@ class PaystackPlans < PaystackBaseObject
 		initGetRequest(paystackObj, "#{API::PLAN_PATH}/#{plan_id}")
 	end
 
-	def PaystackPlans.get(paystackObj, page=1)
+	def PaystackPlans.list(paystackObj, page=1)
 		initGetRequest(paystackObj, "#{API::PLAN_PATH}?page=#{page}")
 	end
 
