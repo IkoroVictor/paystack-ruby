@@ -43,17 +43,17 @@ class Paystack
 #		begin
 #			response =  RestClient.post "#{API::BASE_URL}#{API::TRANSACTION_PATH}/charge_token", {:token => token, :amount => amount, :email => email, :reference => reference}.to_json, :Authorization  => "Bearer #{@private_key}", :content_type => :json, :accept => :json
 #			unless (response.code == 200 || response.code == 201)
-#					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+#					raise PaystackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 #			end
 #			result = JSON.parse(response.body)
 #			unless(result['status'] != 0 )
-#				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
+#				raise PaystackServerError.new(response), "Server Message: #{result['message']}"
 #			end
 #
 #		rescue JSON::ParserError => jsonerr
-#			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+#			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 #
-#		rescue PayStackServerError => e
+#		rescue PaystackServerError => e
 #			Utils.serverErrorHandler(e)
 #		end	
 #		return result

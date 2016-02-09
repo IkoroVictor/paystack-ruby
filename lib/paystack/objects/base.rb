@@ -16,15 +16,15 @@ class PaystackBaseObject
 		begin
 			response =  RestClient.get "#{API::BASE_URL}#{url}" , :Authorization  => "Bearer #{paystackObj.private_key}", :content_type => :json, :accept => :json
 			unless (response.code == 200 || response.code == 201)
-					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+					raise PaystackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 			end
 			result = JSON.parse(response.body)
 			unless(result['status'] != 0 )
-				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
+				raise PaystackServerError.new(response), "Server Message: #{result['message']}"
 			end
 
 		rescue JSON::ParserError => jsonerr
-			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
 		rescue PayStackServerError => e
 			Utils.serverErrorHandler(e)
@@ -42,15 +42,15 @@ class PaystackBaseObject
 		
 			end
 			unless (response.code == 200 || response.code == 201)
-					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+					raise PaystackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 			end
 			result = JSON.parse(response.body)
 			unless(result['status'] != 0 )
-				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
+				raise PaystackServerError.new(response), "Server Message: #{result['message']}"
 			end
 
 		rescue JSON::ParserError => jsonerr
-			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
 		rescue PayStackServerError => e
 			Utils.serverErrorHandler(e)
@@ -63,15 +63,15 @@ class PaystackBaseObject
 		begin
 			response =  RestClient.put "#{API::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{paystackObj.private_key}"
 			unless (response.code == 200 || response.code == 201)
-					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+					raise PaystackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 			end
 			result = JSON.parse(response.body)
 			unless(result['status'] != 0 )
-				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
+				raise PaystackServerError.new(response), "Server Message: #{result['message']}"
 			end
 
 		rescue JSON::ParserError => jsonerr
-			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
 		rescue PayStackServerError => e
 			Utils.serverErrorHandler(e)
@@ -84,15 +84,15 @@ class PaystackBaseObject
 		begin
 			response =  RestClient.delete "#{API::BASE_URL}#{url}" ,  :Authorization  => "Bearer #{paystackObj.private_key}"
 			unless (response.code == 200 || response.code == 201)
-					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+					raise PaystackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 			end
 			result = JSON.parse(response.body)
 			unless(result['status'] != 0 )
-				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
+				raise PaystackServerError.new(response), "Server Message: #{result['message']}"
 			end
 
 		rescue JSON::ParserError => jsonerr
-			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
 		rescue PayStackServerError => e
 			Utils.serverErrorHandler(e)

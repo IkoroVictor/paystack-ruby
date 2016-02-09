@@ -1,10 +1,10 @@
 
-class PayStackServerError < StandardError
+class PaystackServerError < StandardError
 	attr_reader :response 
 	def initialize(response=nil)
 		@response = response
 	end
 end
 
-class PayStackCardError < StandardError
+class PaystackCardError < StandardError
 end

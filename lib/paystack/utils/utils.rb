@@ -81,7 +81,7 @@ module Utils
 			raise e
 			return
 		end
-		error = PayStackServerError.new(e.response);
+		error = PaystackServerError.new(e.response);
 		case e.response.code
 				when 400
 					raise error, "HTTP Code 400: A validation or client side error occurred and the request was not fulfilled. "
