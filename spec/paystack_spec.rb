@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'paystack.rb'
-require 'paystack/models/card.rb'
+require 'paystack/objects/card.rb'
 
 
 public_test_key = "pk_test_ea7c71f838c766922873f1dd3cc529afe13da1c0"

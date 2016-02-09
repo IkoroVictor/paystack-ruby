@@ -32,10 +32,15 @@ class PaystackBaseObject
 		return result
 	end
 
-	def self.initPostRequest(paystackObj, url, data = {} ) 
+	def self.initPostRequest(paystackObj, url, data = {}, json=false ) 
 		result = nil
 		begin
-			response =  RestClient.post "#{API::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{paystackObj.private_key}"
+			if !json
+				response =  RestClient.post "#{API::BASE_URL}#{url}" , data,  :Authorization  => "Bearer #{paystackObj.private_key}"
+			else
+				response =  RestClient.post "#{API::BASE_URL}#{url}" , data.to_json,  :Authorization  => "Bearer #{paystackObj.private_key}", :content_type => :json, :accept => :json
+		
+			end
 			unless (response.code == 200 || response.code == 201)
 					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 			end

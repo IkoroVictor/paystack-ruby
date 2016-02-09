@@ -10,7 +10,6 @@ class PaystackTransactions < PaystackBaseObject
 		return PaystackTransactions.get(@paystack, transaction_id)
 	end
 
-
 	def verify transaction_reference
 		return PaystackTransactions.verify(@paystack, transaction_reference)
 	end
@@ -19,8 +18,14 @@ class PaystackTransactions < PaystackBaseObject
 		return PaystackTransactions.totals(@paystack, page)
 	end
 
+	def  chargeToken(token, amount,args = {})
+		return PaystackTransactions.chargeToken(@paystack,token, amount, args)
+	end
+
 
 # => Public Static methods
+
+
 	def PaystackTransactions.list(paystackObj, page=1)
 		
 		initGetRequest(paystackObj, "#{API::TRANSACTION_PATH}?page=#{page}")
@@ -37,6 +42,12 @@ class PaystackTransactions < PaystackBaseObject
 
 	def PaystackTransactions.totals(paystackObj, page=1)
 		initGetRequest(paystackObj, "#{API::TRANSACTION_PATH}/totals?page=#{page}")
+	end
+
+	def PaystackTransactions.chargeToken(paystackObj,token, amount,args = {})
+		hash = {:token => token, :amount => amount}.merge(args)
+		initPostRequest(paystackObj,"#{API::TRANSACTION_PATH}/charge_token",  hash, true)
+
 	end
 
  
