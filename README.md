@@ -20,21 +20,21 @@ Or install it yourself as:
 
     $ gem install paystack
 
-## Usage
+## Basic Usage
 
-### 1. Instantiate Paystack Object
+### Instantiate Paystack Object
 
 ```ruby
 
-    paystack = Paystack.new(public_key, secret_key)
+    paystackObj = Paystack.new(public_key, secret_key)
 
 ```
 
-A more secure way is to set your public and private keys as environmental variables `PAYSTACK_PUBLIC_KEY` and `PAYSTACK_PRIVATE_KEY` respectively. Then you instantiate without parameters
+A secure way is to set your public and private keys as environmental variables `PAYSTACK_PUBLIC_KEY` and `PAYSTACK_PRIVATE_KEY` respectively. Then you instantiate without parameters
 
 ```ruby
 
-	paystack =  Paystack.new
+	paystackObj =  Paystack.new
 
 ```
 It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot be found as environment variables.
@@ -42,7 +42,7 @@ It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot 
 Methods available in the Paystack class include
 
 
-### 2. Instantiate a Card object
+### Instantiate a Card object
 
 ```ruby
 	card = new PaystackCard(
@@ -54,17 +54,115 @@ Methods available in the Paystack class include
 
 	isvalid = card.isValidCard
 ```
-The `isValidCard` method determines the validity of the card i.e. Expiry status, Luhn validity,
+The `isValidCard` method determines validity of the card i.e. Expiry status, Luhn checksum validity etc.
+All card values/fields should be String literals.
+
+### Generate card token
+
+```ruby
+	
+	results = paystackObj.getToken(card)
+	cardToken = results[:token]
+
+```
+Throws a PaystackCardError if card is invalid i.e `isValidCard` returns false or card is nil
 
 
+### Charge Customer with token 
+
+```ruby
+
+	transactions = PaystackTransactions.new(paystackObj)
+	result = transactions.chargeToken(
+		cardToken, 
+		100000,
+		:email => "xxxxxx@gmail.com",
+		:reference => "blablablablaYOUR-UNIQUE-REFERENCE-HERE"
+		)
+```
+or you can call method statically (applicable to other methods available in PaystackTransactions class)
+
+```ruby
+
+	result = PaystackTransactions.chargeToken(
+		paystackObj,
+		cardToken, 
+		100000,
+		:email => "xxxxxx@gmail.com",
+		:reference => "blablablabla-YOUR-UNIQUE-REFERENCE-HERE"
+		)
+```
+
+NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira
 
 
+### Charge using Authorization code for returning customers
 
-## Development
+```ruby
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+	result = transactions.chargeAuthorization(
+		"WwdkojpoAJo", 				# Authorization code
+		"xxxxxx@gmail.com", 		# Customer email
+		2000000, 					# Amount
+		:reference => "blablablabla-YOUR-UNIQUE-REFERENCE-HERE"
+		)
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### initialize transaction and get Authorization URL 
+
+```ruby
+
+	transactions = PaystackTransactions.new(paystackObj)
+	result = transactions.initializeTransaction(
+		:reference => "blablablabla-YOUR-UNIQUE-REFERENCE-HERE",
+		:amount => 300000,
+		:email => "xxxxxx@gmail.com",
+		)
+	auth_url = results['data']['authorization_url']
+```
+
+## Transactions
+
+### List transactions
+
+```ruby
+
+	page_number = 1
+	transactions = PaystackTransactions.new(paystackObj)
+	result = transactions.list(page_number) 	#Optional `page_number` parameter 
+
+```
+
+### Get a transaction
+
+```ruby
+
+	transaction_id = 123456778
+	transactions = PaystackTransactions.new(paystackObj)
+	result = transactions.get(transaction_id) 
+
+```
+
+### Verify a transaction
+
+```ruby
+
+	transaction_reference = "blablablabla-YOUR-UNIQUE-REFERENCE-HERE"
+	transactions = PaystackTransactions.new(paystackObj)
+	result = transactions.verify(transaction_reference) 
+
+```
+
+### Get transaction totals
+
+```ruby
+
+	transactions = PaystackTransactions.new(paystackObj)
+	result = transactions.totals() 
+
+```
+
+
 
 ## Contributing
 
