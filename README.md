@@ -39,9 +39,6 @@ A secure way is to set your public and private keys as environmental variables `
 ```
 It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot be found as environment variables.
 
-Methods available in the Paystack class include
-
-
 ### Instantiate a Card object
 
 ```ruby
@@ -80,7 +77,7 @@ Throws a PaystackCardError if card is invalid i.e `isValidCard` returns false or
 		:reference => "blablablablaYOUR-UNIQUE-REFERENCE-HERE"
 		)
 ```
-or you can call method statically (applicable to other methods available in PaystackTransactions class)
+or you can call method statically (applicable to other methods available in `PaystackTransactions` class)
 
 ```ruby
 
