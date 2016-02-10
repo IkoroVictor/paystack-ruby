@@ -8,13 +8,48 @@ private_test_key = "sk_test_40e9340686e6187697f8309dbae57c002bb16dd0"
 
 describe Paystack do
 	it "should create a valid object" do
-		paystack = Paystack.new(public_test_key)
+		paystack = Paystack.new(public_test_key,private_test_key)
 		expect(paystack.nil?).to eq false
 	end
 
+	it "should throw a PaystackBadKeyError" do
+		begin
+			paystack = Paystack.new(public_test_key)
+		rescue  => e
+			expect(e.instance_of? PaystackBadKeyError).to eq true
+		end
+		
+	end
+
+	it "should throw a PaystackBadKeyError" do
+		begin
+			paystack = Paystack.new
+		rescue  => e
+			expect(e.instance_of? PaystackBadKeyError).to eq true
+		end
+		
+	end
+	it "should throw a PaystackBadKeyError" do
+		begin
+			paystack = Paystack.new(nil, private_test_key)
+		rescue  => e
+			expect(e.instance_of? PaystackBadKeyError).to eq true
+		end
+		
+	end
+	it "should throw a PaystackBadKeyError" do
+		begin
+			paystack = Paystack.new("33444", "444444")
+		rescue  => e
+			expect(e.instance_of? PaystackBadKeyError).to eq true
+		end
+		
+	end
+
+
 	it "should generate a valid token" do
 		card = PaystackCard.new(:name => 'Victor Ikoro', :number => '4123450131001381', :cvc => '883', :expiryMonth  => '09', :expiryYear => '19')
-		paystack = Paystack.new(public_test_key)
+		paystack = Paystack.new(public_test_key, private_test_key)
 		token = paystack.getToken(card)
 		expect(token.nil?).to eq false
 	end

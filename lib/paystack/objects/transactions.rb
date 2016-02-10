@@ -2,6 +2,10 @@ require 'paystack/objects/base.rb'
 
 class PaystackTransactions < PaystackBaseObject
 	
+	def initializeTransaction(args={})
+		return PaystackTransactions.initializeTransaction(@paystack, args)
+	end
+
 	def list(page=1)
 		return PaystackTransactions.list(@paystack, page)
 	end
@@ -28,6 +32,11 @@ class PaystackTransactions < PaystackBaseObject
 
 
 # => Public Static methods
+
+	
+	def PaystackTransactions.initializeTransaction(paystackObj, args)
+		initPostRequest(paystackObj,"#{API::TRANSACTION_PATH}/initialize", args,true)
+	end
 
 	def PaystackTransactions.list(paystackObj, page=1)
 		

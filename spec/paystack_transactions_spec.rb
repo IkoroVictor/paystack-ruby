@@ -8,31 +8,46 @@ private_test_key = "sk_test_40e9340686e6187697f8309dbae57c002bb16dd0"
 describe PaystackTransactions do
 	it "should return a valid transaction object" do
 		paystack = Paystack.new(public_test_key, private_test_key)
-		transaction = PaystackTransactions.new(paystack)
-		expect(transaction.nil?).to eq false
+		transactions = PaystackTransactions.new(paystack)
+		expect(transactions.nil?).to eq false
 	end
 
 	it "should return a list of transactions" do
 		paystack = Paystack.new(public_test_key, private_test_key)
-		transaction = PaystackTransactions.new(paystack)
-		expect(transaction.nil?).to eq false
-		list =  transaction.list(1)
+		transactions = PaystackTransactions.new(paystack)
+		expect(transactions.nil?).to eq false
+		list =  transactions.list(1)
 		#puts list
 		expect(list.nil?).to eq false
 	end
 
 	it "should return a valid transaction hashset" do
 		paystack = Paystack.new(public_test_key, private_test_key)
-		transaction = PaystackTransactions.new(paystack)
-		expect(transaction.nil?).to eq false
-		list =  transaction.list(1)
+		transactions = PaystackTransactions.new(paystack)
+		expect(transactions.nil?).to eq false
+		list =  transactions.list(1)
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
 		#puts temp
-		hash=transaction.get(temp['id'])
+		hash=transactions.get(temp['id'])
 		#puts hash
 		expect(hash.nil?).to eq false
 		expect(hash['data']['id'].nil?).to eq false
+
+	end
+
+	it "should initialize a transaction and expect an authorization url" do
+		paystack = Paystack.new(public_test_key, private_test_key)
+		transactions = PaystackTransactions.new(paystack)
+		expect(transactions.nil?).to eq false
+		temp = transactions.initializeTransaction(
+			:reference =>  Random.new_seed.to_s[0..9],
+			:email => "ikoro.victor@gmail.com",
+			:amount => 30000,
+			)
+		#puts temp
+		expect(temp.nil?).to eq false
+		expect(temp['data']['authorization_url'].nil?).to eq false
 
 	end
 

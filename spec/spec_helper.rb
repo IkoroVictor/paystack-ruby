@@ -17,7 +17,6 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-public_test_key = "pk_test_ea7c71f838c766922873f1dd3cc529afe13da1c0"
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

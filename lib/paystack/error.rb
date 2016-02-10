@@ -8,3 +8,6 @@ end
 
 class PaystackCardError < StandardError
 end
+
+class PaystackBadKeyError < StandardError
+end
