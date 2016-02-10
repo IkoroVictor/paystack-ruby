@@ -93,7 +93,7 @@ or you can call method statically (applicable to other methods available in Pays
 		)
 ```
 
-NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira
+NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 
 ### Charge using Authorization code for returning customers
@@ -108,7 +108,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira
 		)
 ```
 
-### initialize transaction and get Authorization URL 
+### Initialize transaction and get Authorization URL 
 
 ```ruby
 
