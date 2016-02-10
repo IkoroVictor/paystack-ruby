@@ -4,7 +4,11 @@ require 'paystack/error.rb'
 module Utils
 	
 	def Utils.nullifyString(value)
-		if(value.strip.eql? "" || value.nil?)
+		if value.nil?
+			return nil
+		end
+
+		if (value.strip.eql? "")
 			return nil
 		end
 		return value;
