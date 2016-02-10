@@ -1,11 +1,8 @@
 # Paystack
 
 
-A ruby gem for easy integration of Paystack with your Ruby / Rails application. 
+A ruby gem for easy integration of [Paystack](https://paystack.co/).
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/paystack`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -27,7 +24,11 @@ Or install it yourself as:
 
 ### 1. Instantiate Paystack Object
 
+```ruby
+
     paystack = Paystack.new(public_key, secret_key)
+
+```
 
 A more secure way is to set your public and private keys as environmental variables `PAYSTACK_PUBLIC_KEY` and `PAYSTACK_PRIVATE_KEY` respectively. Then you instantiate without parameters
 
@@ -36,9 +37,9 @@ A more secure way is to set your public and private keys as environmental variab
 	paystack =  Paystack.new
 
 ```
+It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot be found as environment variables.
 
 Methods available in the Paystack class include
-
 
 
 ### 2. Instantiate a Card object
@@ -50,7 +51,11 @@ Methods available in the Paystack class include
 		:expiryMonth => "07",
 		:expiryYear => "19"
 		)
+
+	isvalid = card.isValidCard
 ```
+The `isValidCard` method determines the validity of the card i.e. Expiry status, Luhn validity,
+
 
 
 

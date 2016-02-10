@@ -30,7 +30,7 @@ module Utils
 		return true
 	end
 
-	def Utils.isLuthValidNumber(number)
+	def Utils.isLuhnValidNumber(number)
 		sum = 0
 		length = number.strip.length;
 

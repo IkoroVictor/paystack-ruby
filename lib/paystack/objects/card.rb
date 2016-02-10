@@ -71,7 +71,7 @@ class PaystackCard
 		end
 		formatted_number = @number.gsub(/\s+|-/) {|s| '' }.strip
 		
-		if(Utils.isEmpty(formatted_number) || !Utils.isWholePositiveNumber(formatted_number) || !Utils.isLuthValidNumber(formatted_number))
+		if(Utils.isEmpty(formatted_number) || !Utils.isWholePositiveNumber(formatted_number) || !Utils.isLuhnValidNumber(formatted_number))
 	
 			return false
 		end
