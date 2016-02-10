@@ -62,7 +62,7 @@ All card values/fields should be String literals.
 	cardToken = results[:token]
 
 ```
-Throws a PaystackCardError if card is invalid i.e `isValidCard` returns false or card is nil
+Throws a `PaystackCardError` if card is invalid i.e `isValidCard` returns false or card is nil
 
 
 ### Charge Customer with token 
