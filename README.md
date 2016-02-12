@@ -245,7 +245,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ```
 
 
-##
+## Static methods
 `PaystackTransactions`, `PaystackCustomers` and `PaystackPlans` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
 
 
