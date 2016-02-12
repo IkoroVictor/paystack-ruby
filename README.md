@@ -22,6 +22,8 @@ Or install it yourself as:
 
 ## Basic Usage
 
+
+
 ### Instantiate Paystack Object
 
 ```ruby
@@ -39,6 +41,8 @@ A secure way is to set your public and private keys as environmental variables `
 ```
 It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot be found as environment variables.
 
+
+
 ### Instantiate a Card object
 
 ```ruby
@@ -54,43 +58,22 @@ It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot 
 The `isValidCard` method determines validity of the card i.e. Expiry status, Luhn checksum validity etc.
 All card values/fields should be String literals.
 
-### Generate card token
-
-```ruby
-	
-	results = paystackObj.getToken(card)
-	cardToken = results[:token]
-
-```
-Throws a `PaystackCardError` if card is invalid i.e `isValidCard` returns false or card is nil
 
 
-### Charge Customer with token 
+### Initialize transaction and get Authorization URL 
 
 ```ruby
 
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.chargeToken(
-		cardToken, 
-		100000,
+	result = transactions.initializeTransaction(
+		:reference => "blablablabla-YOUR-UNIQUE-REFERENCE-HERE",
+		:amount => 300000,
 		:email => "xxxxxx@gmail.com",
-		:reference => "blablablablaYOUR-UNIQUE-REFERENCE-HERE"
 		)
+	auth_url = results['data']['authorization_url']
 ```
-or you can call method statically (applicable to other methods available in `PaystackTransactions` class)
-
-```ruby
-
-	result = PaystackTransactions.chargeToken(
-		paystackObj,
-		cardToken, 
-		100000,
-		:email => "xxxxxx@gmail.com",
-		:reference => "blablablabla-YOUR-UNIQUE-REFERENCE-HERE"
-		)
-```
-
 NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
+
 
 
 ### Charge using Authorization code for returning customers
@@ -105,20 +88,11 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 		)
 ```
 
-### Initialize transaction and get Authorization URL 
 
-```ruby
-
-	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.initializeTransaction(
-		:reference => "blablablabla-YOUR-UNIQUE-REFERENCE-HERE",
-		:amount => 300000,
-		:email => "xxxxxx@gmail.com",
-		)
-	auth_url = results['data']['authorization_url']
-```
 
 ## Transactions
+
+
 
 ### List transactions
 
@@ -150,6 +124,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ```
 
+
 ### Get transaction totals
 
 ```ruby
@@ -158,6 +133,10 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 	result = transactions.totals() 
 
 ```
+
+## Customers
+
+
 
 
 
