@@ -70,7 +70,7 @@ All card values/fields should be String literals.
 		:amount => 300000,
 		:email => "xxxxxx@gmail.com",
 		)
-	auth_url = results['data']['authorization_url']
+	auth_url = result['data']['authorization_url']
 ```
 NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
