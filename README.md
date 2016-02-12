@@ -54,7 +54,7 @@ It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot 
 The `isValidCard` method determines validity of the card i.e. Expiry status, Luhn checksum validity etc.
 All card values/fields should be String literals.
 
-### Generate card token(Depreciated)
+### Generate card token(Deprecated)
 
 NOTE: `getToken` method is currently depreciated and would be removed in future releases.
 
@@ -67,7 +67,7 @@ NOTE: `getToken` method is currently depreciated and would be removed in future 
 Throws a `PaystackCardError` if card is invalid i.e `isValidCard` returns false or card is nil
 
 
-### Charge Customer with token(Depreciated)
+### Charge Customer with token(Deprecated)
 
 NOTE: Charging customers via token will not be supported in future releases.
 
