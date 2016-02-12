@@ -54,7 +54,9 @@ It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot 
 The `isValidCard` method determines validity of the card i.e. Expiry status, Luhn checksum validity etc.
 All card values/fields should be String literals.
 
-### Generate card token
+### Generate card token(Depreciated)
+
+NOTE: `getToken` method is currently depreciated and would be removed in future releases.
 
 ```ruby
 	
@@ -65,7 +67,9 @@ All card values/fields should be String literals.
 Throws a `PaystackCardError` if card is invalid i.e `isValidCard` returns false or card is nil
 
 
-### Charge Customer with token 
+### Charge Customer with token(Depreciated)
+
+NOTE: Charging customers via token will not be supported in future releases.
 
 ```ruby
 
