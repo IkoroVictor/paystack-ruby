@@ -56,7 +56,7 @@ All card values/fields should be String literals.
 
 ### Generate card token(Deprecated)
 
-NOTE: `getToken` method is currently depreciated and would be removed in future releases.
+> NOTE: `getToken` method is currently depreciated and would be removed in future releases.
 
 ```ruby
 	
@@ -69,7 +69,7 @@ Throws a `PaystackCardError` if card is invalid i.e `isValidCard` returns false 
 
 ### Charge Customer with token(Deprecated)
 
-NOTE: Charging customers via token will not be supported in future releases.
+> NOTE: Charging customers via token will not be supported in future releases.
 
 ```ruby
 
