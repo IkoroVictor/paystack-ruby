@@ -118,7 +118,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ```ruby
 
-	transaction_reference = "blablablabla-YOUR-UNIQUE-REFERENCE-HERE"
+	transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
 	transactions = PaystackTransactions.new(paystackObj)
 	result = transactions.verify(transaction_reference) 
 
@@ -133,6 +133,18 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 	result = transactions.totals() 
 
 ```
+
+`PaystackTransactions` methods can be called statically, You just need to pass the paystack objecta as the first parameter  e.g. `verify` method  can be called like this
+
+
+```ruby
+
+	transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
+	result = PaystackTransactions.verify(paystackObj, transaction_reference)
+	puts result['message']
+
+```
+
 
 ## Customers
 
