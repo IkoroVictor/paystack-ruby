@@ -39,17 +39,17 @@ module TokenManager
 		begin
 			response = RestClient.post "#{API::TOKEN_URL}", :clientdata => encrypted_card, :publishablekey => publishableKey 
 			unless (response.code == 200 || response.code == 201)
-					raise PayStackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+					raise PaystackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
 			end
 			result = JSON.parse(response.body)
 			unless(result['status'] != '0' )
-				raise PayStackServerError.new(response), "Server Message: #{result['message']}"
+				raise PaystackServerError.new(response), "Server Message: #{result['message']}"
 			end
 			token = {:token => result['token'], :last4 => result['last4']}
 		rescue JSON::ParserError => jsonerr
-			raise PayStackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
-		rescue PayStackServerError => e
+		rescue PaystackServerError => e
 			puts e.response.code
 			Utils.serverErrorHandler(e)
 		end

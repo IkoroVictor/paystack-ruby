@@ -26,7 +26,7 @@ class PaystackBaseObject
 		rescue JSON::ParserError => jsonerr
 			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
-		rescue PayStackServerError => e
+		rescue PaystackServerError => e
 			Utils.serverErrorHandler(e)
 		end	
 		return result
@@ -52,7 +52,7 @@ class PaystackBaseObject
 		rescue JSON::ParserError => jsonerr
 			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
-		rescue PayStackServerError => e
+		rescue PaystackServerError => e
 			Utils.serverErrorHandler(e)
 		end	
 		return result
@@ -73,7 +73,7 @@ class PaystackBaseObject
 		rescue JSON::ParserError => jsonerr
 			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
-		rescue PayStackServerError => e
+		rescue PaystackServerError => e
 			Utils.serverErrorHandler(e)
 		end	
 		return result
@@ -94,7 +94,7 @@ class PaystackBaseObject
 		rescue JSON::ParserError => jsonerr
 			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
 
-		rescue PayStackServerError => e
+		rescue PaystackServerError => e
 			Utils.serverErrorHandler(e)
 		end	
 		return result

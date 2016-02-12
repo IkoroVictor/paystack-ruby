@@ -43,9 +43,6 @@ class Paystack
 
 	end
 
-	def getToken card
-		return TokenManager.create(card, @public_key)
-	end
 
 	def setPublicKey public_key
 		@public_key = public_key

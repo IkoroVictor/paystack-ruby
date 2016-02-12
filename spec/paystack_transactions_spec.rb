@@ -37,15 +37,16 @@ describe PaystackTransactions do
 	end
 
 	it "should initialize a transaction and expect an authorization url" do
+		reference = Random.new_seed.to_s[0..9]
 		paystack = Paystack.new(public_test_key, private_test_key)
 		transactions = PaystackTransactions.new(paystack)
 		expect(transactions.nil?).to eq false
 		temp = transactions.initializeTransaction(
-			:reference =>  Random.new_seed.to_s[0..9],
-			:email => "ikoro.victor@gmail.com",
+			:reference =>  reference,
+			:email => "xxxrr@gmail.com",
 			:amount => 30000,
 			)
-		#puts temp
+		puts temp
 		expect(temp.nil?).to eq false
 		expect(temp['data']['authorization_url'].nil?).to eq false
 
@@ -63,7 +64,6 @@ describe PaystackTransactions do
 		#puts hash
 		expect(hash.nil?).to eq false
 		#expect(hash['data']['id'].nil?).to eq false
-
 	end
 
 	it "should return a list of transaction totals" do
@@ -75,32 +75,25 @@ describe PaystackTransactions do
 		expect(totals.nil?).to eq false
 	end
 
-	it "should generate a valid token and charge client using token" do
-		
-		card = PaystackCard.new(:name => 'Victor Ikoro', :number => '4123450131001381', :cvc => '883', :expiryMonth  => '09', :expiryYear => '19')
-		paystack = Paystack.new(public_test_key, private_test_key)
-		token = paystack.getToken(card)
-		puts token
-		expect(token.nil?).to eq false
-		transaction = PaystackTransactions.new(paystack)
-		result = transaction.chargeToken(token[:token], 100000.00, :email => "ikoro.victor@gmail.com", :reference => Random.new_seed.to_s)
-		#puts result
-		expect(result.nil?).to eq false
-	end
 
-	it "should recharge an authorization for returning customers" do
+	it "should recharge an authorization for returning customers.\n Test is bound to fail for invaild reference " do
 		
-		card = PaystackCard.new(:name => 'Victor Ikoro', :number => '4123450131001381', :cvc => '883', :expiryMonth  => '09', :expiryYear => '19')
+		#TODO: Manually get valid reference for this test 
+		# i.e Initailize transaction with your reference, redirect to authorization url, fill card details,
+		# if transaction successful, replace your reference with the value below	
+		reference = "2425847597"  
+
 		paystack = Paystack.new(public_test_key, private_test_key)
-		token = paystack.getToken(card)
-		puts token
-		expect(token.nil?).to eq false
-		transaction = PaystackTransactions.new(paystack)
-		charge = transaction.chargeToken(token[:token], 100000.00, :email => "ikoro.victor@gmail.com", :reference => Random.new_seed.to_s)
-		#puts charge
-		expect(charge.nil?).to eq false
-		result = transaction.chargeAuthorization(charge['data']['authorization']['authorization_code'], charge['data']['customer']['email'], 2000, :reference => Random.new_seed.to_s )
-		puts result
+		transactions = PaystackTransactions.new(paystack)
+		expect(transactions.nil?).to eq false
+
+		v = transactions.verify(reference)
+		expect(v.nil?).to eq false
+		#puts v
+		auth = v['data']['authorization']['authorization_code']
+		email = v['data']['customer']['email']
+		result = transactions.chargeAuthorization(auth, email , 2000, :reference => Random.new_seed.to_s )
+		#puts result
 		expect(result.nil?).to eq false
 		
 	end
