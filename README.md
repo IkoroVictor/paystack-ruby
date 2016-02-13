@@ -91,7 +91,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ```ruby
 
-	transaction_id = ""123456778""
+	transaction_id = "123456778"
 	transactions = PaystackTransactions.new(paystackObj)
 	result = transactions.get(transaction_id) 
 
