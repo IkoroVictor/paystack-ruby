@@ -43,23 +43,6 @@ It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot 
 
 
 
-### Instantiate a Card object
-
-```ruby
-	card = new PaystackCard(
-		:number => "304402040400400022", 
-		:cvc => "888", 
-		:expiryMonth => "07",
-		:expiryYear => "19"
-		)
-
-	isvalid = card.isValidCard
-```
-The `isValidCard` method determines validity of the card i.e. Expiry status, Luhn checksum validity etc.
-All card values/fields should be String literals.
-
-
-
 ### Initialize transaction and get Authorization URL 
 
 ```ruby
