@@ -1,4 +1,3 @@
-
 require 'paystack/error.rb'
 
 module Utils
