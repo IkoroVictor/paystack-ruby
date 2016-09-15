@@ -1,25 +1,25 @@
 require 'paystack/objects/base.rb'
 
-class PaystackPlans < PaystackBaseObject	
+class PaystackPlans < PaystackBaseObject
 
 	def create(data={})
-		return PaystackPlans.create(@paystack, data)
+		PaystackPlans.create(@paystack, data)
 	end
 
 	def get(plan_id)
-		return PaystackPlans.get(@paystack, plan_id)
+		PaystackPlans.get(@paystack, plan_id)
 	end
 
 
 	def update(plan_id, data={})
-		return PaystackPlans.update(@paystack, plan_id,  data)
+		PaystackPlans.update(@paystack, plan_id,  data)
 	end
 
 	def list(page=1)
-		return PaystackPlans.list(@paystack, page)
+		PaystackPlans.list(@paystack, page)
 	end
 
-
+protected
 	def PaystackPlans.create(paystackObj, data)
 		initPostRequest(paystackObj,"#{API::PLAN_PATH}",  data)
 	end
@@ -35,8 +35,4 @@ class PaystackPlans < PaystackBaseObject
 	def PaystackPlans.list(paystackObj, page=1)
 		initGetRequest(paystackObj, "#{API::PLAN_PATH}?page=#{page}")
 	end
-
-
-
-
 end

@@ -2,35 +2,23 @@
 require 'paystack/error.rb'
 
 module Utils
-	
-	def Utils.nullifyString(value)
-		if value.nil?
-			return nil
-		end
 
-		if (value.strip.eql? "")
-			return nil
-		end
-		return value;
+	def self.nullifyString(value)
+		return nil if isEmpty(value)
+		value
 	end
 
-	def Utils.isWholePositiveNumber(value)
-		if(value == nil)
-			return false
-		end
-		length = value.length;
-
-		for i in 0..(length-1)
-			c = value[i]
-
-			if((c =~ /[[:digit:]]/) == nil)
+	def self.isWholePositiveNumber(value)
+		return false unless value
+		value.each do |char|
+			unless char =~ /[[:digit:]]/
 				return false
 			end
 		end
-		return true
+		true
 	end
 
-	def Utils.isLuhnValidNumber(number)
+	def self.isLuhnValidNumber(number)
 		sum = 0
 		length = number.strip.length;
 
@@ -43,45 +31,41 @@ module Utils
 			digit = c.to_i
 			if (i % 2 == 1)
 				digit *= 2
-			end 
+			end
 			sum += digit > 9 ? digit - 9 : digit
 		end
 
 		return (sum % 10 == 0)
 	end
 
-	def Utils.isEmpty(value)
-		return (value.nil? || value.strip.eql?(""))
+	def self.isEmpty(value)
+		value.nil? || value.strip.empty?
 	end
 
-	def Utils.hasYearPassed(year)
-		return year < Time.new.year
+	def self.hasYearPassed(year)
+		year < Time.new.year
 	end
-	def Utils.hasMonthPassed(year, month)
+
+	def self.hasMonthPassed(year, month)
 		t = Time.new
-		return hasYearPassed(year) || year == t.year && month < (t.month)
+ 		hasYearPassed(year) || year == t.year && month < (t.month)
 	end
 
-	def Utils.hasCardExpired(year, month)
+	def self.hasCardExpired(year, month)
 		# Normalize Year value e.g 14 becomes 2014 or 2114  etc.
 		year_int = year.strip.to_i
-		if(year_int < 100 && year_int >= 0)
+		if year_int < 100 && year_int >= 0
 			cal_year = Time.new.year.to_s
 			year_int = ("#{cal_year[0..1]}#{year.strip}").to_i
 		end
-		
-		# Check for expiration
-		return !hasYearPassed(year_int) && !hasMonthPassed(year_int, month.to_i)
 
+		# Check for expiration
+		!hasYearPassed(year_int) && !hasMonthPassed(year_int, month.to_i)
 	end
 
-	
+	def self.serverErrorHandler(e)
 
-
-
-	def Utils.serverErrorHandler(e)
-
-		if(e.response == nil)
+		unless e.response
 			raise e
 			return
 		end
@@ -97,7 +81,7 @@ module Utils
 					raise error, "HTTP Code #{e.response.code}: Request could not be fulfilled due to an error on Paystack's end. This shouldn't happen so please report as soon as you encounter any instance of this."
 				else
 					raise error, "HTTP Code #{e.response.code}: #{e.response.body}"
-					
+
 				end
 
 	end

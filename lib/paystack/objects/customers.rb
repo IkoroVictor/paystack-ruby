@@ -2,23 +2,22 @@ require 'paystack/objects/base.rb'
 
 class PaystackCustomers < PaystackBaseObject
 	def create(data={})
-		return PaystackCustomers.create(@paystack, data)
+		PaystackCustomers.create(@paystack, data)
 	end
 
 	def get(customer_id)
-		return PaystackCustomers.get(@paystack, customer_id)
+		PaystackCustomers.get(@paystack, customer_id)
 	end
 
-
 	def update(customer_id, data={})
-		return PaystackCustomers.update(@paystack, customer_id,  data)
+		PaystackCustomers.update(@paystack, customer_id,  data)
 	end
 
 	def list(page=1)
-		return PaystackCustomers.list(@paystack, page)
+		PaystackCustomers.list(@paystack, page)
 	end
 
-
+protected
 	def PaystackCustomers.create(paystackObj, data)
 		initPostRequest(paystackObj,"#{API::CUSTOMER_PATH}",  data)
 	end
