@@ -2,35 +2,40 @@ require 'paystack/objects/base.rb'
 
 class PaystackCustomers < PaystackBaseObject
 	def create(data={})
-		PaystackCustomers.create(@paystack, data)
+		PaystackCustomers.create(paystack, data)
 	end
 
 	def get(customer_id)
-		PaystackCustomers.get(@paystack, customer_id)
+		PaystackCustomers.get(paystack, customer_id)
 	end
 
 	def update(customer_id, data={})
-		PaystackCustomers.update(@paystack, customer_id,  data)
+		PaystackCustomers.update(paystack, customer_id,  data)
 	end
 
 	def list(page=1)
-		PaystackCustomers.list(@paystack, page)
+		PaystackCustomers.list(paystack, page)
+	end
+
+	def whitelist_or_blacklist(customer_id, data)
+		raise PaystackBadKeyError unless data.has_key?(:customer_id)
+		initPostRequest("#{API::CUSTOMER_PATH}/set_risk_action", data)
 	end
 
 protected
-	def PaystackCustomers.create(paystackObj, data)
-		initPostRequest(paystackObj,"#{API::CUSTOMER_PATH}",  data)
+	def PaystackCustomers.create(paystack, data)
+		initPostRequest(paystack, "#{API::CUSTOMER_PATH}", data)
 	end
 
-	def PaystackCustomers.update(paystackObj, customer_id, data)
-		initPutRequest(paystackObj,"#{API::CUSTOMER_PATH}/#{customer_id}",  data)
+	def PaystackCustomers.update(paystack, customer_id, data)
+		initPutRequest(paystack, "#{API::CUSTOMER_PATH}/#{customer_id}",  data)
 	end
 
-	def PaystackCustomers.get(paystackObj, customer_id)
-		initGetRequest(paystackObj, "#{API::CUSTOMER_PATH}/#{customer_id}")
+	def PaystackCustomers.get(paystack, customer_id)
+		initGetRequest(paystack, "#{API::CUSTOMER_PATH}/#{customer_id}")
 	end
 
-	def PaystackCustomers.list(paystackObj, page=1)
-		initGetRequest(paystackObj, "#{API::CUSTOMER_PATH}?page=#{page}")
+	def PaystackCustomers.list(paystack, page=1)
+		initGetRequest(paystack, "#{API::CUSTOMER_PATH}?page=#{page}")
 	end
 end

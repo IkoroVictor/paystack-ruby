@@ -10,7 +10,7 @@ module Utils
 
 	def self.isWholePositiveNumber(value)
 		return false unless value
-		value.each do |char|
+		value.each_char do |char|
 			unless char =~ /[[:digit:]]/
 				return false
 			end

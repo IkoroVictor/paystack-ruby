@@ -56,18 +56,28 @@ class PaystackBaseObject
 
 	def self.raise_error_or_return_result(response)
 		unless (response.code == 200 || response.code == 201)
-				raise PaystackServerError.new(response), "HTTP Code #{response.code}: #{response.body}"
+				raise(
+					PaystackServerError.new(response),
+					"HTTP Code #{response.code}: #{response.body}"
+				)
 		end
 		result = JSON.parse(response.body)
 		unless(result['status'] != 0 )
-			raise PaystackServerError.new(response), "Server Message: #{result['message']}"
+			raise(
+				PaystackServerError.new(response),
+				"Server Message: #{result['message']}"
+			)
 		end
 
+		return result
 		rescue JSON::ParserError => jsonerr
-			raise PaystackServerError.new(response) , "Invalid result data. Could not parse JSON response body \n #{jsonerr.message}"
+			raise(
+				PaystackServerError.new(response),
+				"Invalid result data. Could not parse JSON response "\
+				"body \n #{jsonerr.message}"
+			)
 
 		rescue PaystackServerError => e
 			Utils.serverErrorHandler(e)
-	 	result
 	end
 end
