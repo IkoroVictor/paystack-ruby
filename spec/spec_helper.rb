@@ -16,7 +16,22 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require "pry"
+module TestKeys
+  def public_test_key
+    "pk_test_ea7c71f838c766922873f1dd3cc529afe13da1c0"
+  end
+
+  def private_test_key
+    "sk_test_40e9340686e6187697f8309dbae57c002bb16dd0"
+  end
+end
+
+require 'paystack/objects/card.rb'
+require 'paystack/objects/customers.rb'
+require 'paystack.rb'
+require 'paystack/objects/plans.rb'
+require 'paystack/objects/transactions.rb'
+
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -95,4 +110,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+config.include TestKeys
 end

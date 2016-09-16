@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'paystack/objects/card.rb'
-
 
 describe PaystackCard do
 	it "should be valid" do
@@ -27,6 +25,4 @@ describe PaystackCard do
 		card = PaystackCard.new(:name => 'Victor Ikoro', :number => '4123450131001381', :cvc => '838', :expiryMonth  => '09', :expiryYear => '12')
 		expect(card.isValidCard).to eq false
 	end
-
-
 end

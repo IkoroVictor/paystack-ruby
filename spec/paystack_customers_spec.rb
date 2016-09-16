@@ -1,9 +1,4 @@
 require 'spec_helper'
-require 'paystack/objects/customers.rb'
-require 'paystack.rb'
-
-public_test_key = "pk_test_ea7c71f838c766922873f1dd3cc529afe13da1c0"
-private_test_key = "sk_test_40e9340686e6187697f8309dbae57c002bb16dd0"
 
 describe PaystackCustomers do
   it "should return a valid customers object" do
@@ -32,7 +27,7 @@ describe PaystackCustomers do
 
     #puts temp
     hash = customers.get(temp['id'])
-    
+
     #puts hash
     expect(hash.nil?).to eq false
     expect(hash['data']['id'].nil?).to eq false

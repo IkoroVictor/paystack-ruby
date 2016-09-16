@@ -7,8 +7,8 @@ require 'paystack/objects/customers.rb'
 require 'paystack/objects/plans.rb'
 require 'paystack/objects/transactions.rb'
 
-
 class Paystack
+
 	attr_accessor :public_key, :private_key
 
 	def initialize(paystack_pbk_key = nil, paystack_pri_key = nil)
@@ -35,5 +35,4 @@ class Paystack
 			raise PaystackBadKeyError, "Invalid #{key_starter} #{public_key}"
 		end
 	end
-
 end
