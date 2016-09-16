@@ -17,25 +17,24 @@ class PaystackCustomers < PaystackBaseObject
 		PaystackCustomers.list(paystack, page)
 	end
 
-	def whitelist_or_blacklist(customer_id, data)
-		raise PaystackBadKeyError unless data.has_key?(:customer_id)
-		initPostRequest("#{API::CUSTOMER_PATH}/set_risk_action", data)
-	end
-
 protected
-	def PaystackCustomers.create(paystack, data)
+	def self.create(paystack, data)
 		initPostRequest(paystack, "#{API::CUSTOMER_PATH}", data)
 	end
 
-	def PaystackCustomers.update(paystack, customer_id, data)
+	def self.update(paystack, customer_id, data)
 		initPutRequest(paystack, "#{API::CUSTOMER_PATH}/#{customer_id}",  data)
 	end
 
-	def PaystackCustomers.get(paystack, customer_id)
+	def self.get(paystack, customer_id)
 		initGetRequest(paystack, "#{API::CUSTOMER_PATH}/#{customer_id}")
 	end
 
-	def PaystackCustomers.list(paystack, page=1)
+	def self.list(paystack, page=1)
 		initGetRequest(paystack, "#{API::CUSTOMER_PATH}?page=#{page}")
+	end
+
+	def self.paystack_whitelist_or_blacklist(paystack, data)
+		initPostRequest(paystack, "#{API::CUSTOMER_PATH}/set_risk_action", data, true)
 	end
 end

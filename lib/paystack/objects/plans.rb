@@ -20,19 +20,19 @@ class PaystackPlans < PaystackBaseObject
 	end
 
 protected
-	def PaystackPlans.create(paystack, data)
+	def self.create(paystack, data)
 		initPostRequest(paystack, "#{API::PLAN_PATH}",  data)
 	end
 
-	def PaystackPlans.update(paystack, plan_id, data)
+	def self.update(paystack, plan_id, data)
 		initPutRequest(paystack, "#{API::PLAN_PATH}/#{plan_id}",  data)
 	end
 
-	def PaystackPlans.get(paystack, plan_id)
+	def self.get(paystack, plan_id)
 		initGetRequest(paystack, "#{API::PLAN_PATH}/#{plan_id}")
 	end
 
-	def PaystackPlans.list(paystack, paystackObj, page=1)
+	def self.list(paystack, paystackObj, page=1)
 		initGetRequest(paystack, "#{API::PLAN_PATH}?page=#{page}")
 	end
 end
