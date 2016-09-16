@@ -2,20 +2,20 @@ require 'paystack/utils/utils.rb'
 
 class PaystackCard
 	attr_reader(
-		:name,
-		:number,
-		:cvc,
-		:expiryMonth,
-		:expiryYear,
-		:addressLine1,
-		:addressLine2,
-		:addressLine3,
-		:addressLine4,
-		:addressCountry,
-		:addressPostalCode,
-		:email,
-		:cardCountry,
-		:cardIssuer
+	:name,
+	:number,
+	:cvc,
+	:expiryMonth,
+	:expiryYear,
+	:addressLine1,
+	:addressLine2,
+	:addressLine3,
+	:addressLine4,
+	:addressCountry,
+	:addressPostalCode,
+	:email,
+	:cardCountry,
+	:cardIssuer
 	)
 
 	MAX_DINERS_CARD_LENGTH  = 14
@@ -39,11 +39,11 @@ class PaystackCard
 	end
 
 	def isValidCard()
-  	if cvc
-    	isValidNumber() && isValidExpiryDate() && isValidCVC()
-  	else
-    	isValidNumber() && isValidExpiryDate()
-    end
+		if cvc
+			isValidNumber() && isValidExpiryDate() && isValidCVC()
+		else
+			isValidNumber() && isValidExpiryDate()
+		end
 	end
 
 	def PaystackCard.getCardType(number)
@@ -79,12 +79,12 @@ class PaystackCard
 		(cvc_len >= 3 && cvc_len <= 4) || (@cardIssuer.eql?('american_express') &&
 		cvc_len == 4) || (!@cardIssuer.eql?('american_express') && cvc_len == 3)
 	end
-
+	
 	def isValidExpiryDate()
 		!(@expiryMonth == nil || @expiryYear == nil) && Utils.hasCardExpired(
-																														@expiryYear,
-																														@expiryMonth
-																													)
+		@expiryYear,
+		@expiryMonth
+		)
 	end
 
 	def valid_card_no_based_on_type?(formatted_number)
@@ -95,6 +95,6 @@ class PaystackCard
 		if PaystackCard.getCardType(formatted_number).eql?('american_express')
 			return (formatted_number.length == MAX_AMERICAN_EXPRESS_CARD_LENGTH)
 		end
- 		formatted_number.length == MAX_NORMAL_CARD_LENGTH
+		formatted_number.length == MAX_NORMAL_CARD_LENGTH
 	end
 end

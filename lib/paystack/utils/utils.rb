@@ -48,7 +48,7 @@ module Utils
 
 	def self.hasMonthPassed(year, month)
 		t = Time.new
- 		hasYearPassed(year) || year == t.year && month < (t.month)
+		hasYearPassed(year) || year == t.year && month < (t.month)
 	end
 
 	def self.hasCardExpired(year, month)
@@ -71,18 +71,18 @@ module Utils
 		end
 		error = PaystackServerError.new(e.response);
 		case e.response.code
-				when 400
-					raise error, "HTTP Code 400: A validation or client side error occurred and the request was not fulfilled. "
-				when 401
-					raise error, "HTTP Code 401: The request was not authorized. This can be triggered by passing an invalid secret key in the authorization header or the lack of one"
-				when 404
-					raise error, "HTTP Code 404: Request could not be fulfilled as the request resource does not exist."
-				when 500, 501,502,503,504
-					raise error, "HTTP Code #{e.response.code}: Request could not be fulfilled due to an error on Paystack's end. This shouldn't happen so please report as soon as you encounter any instance of this."
-				else
-					raise error, "HTTP Code #{e.response.code}: #{e.response.body}"
+		when 400
+			raise error, "HTTP Code 400: A validation or client side error occurred and the request was not fulfilled. "
+		when 401
+			raise error, "HTTP Code 401: The request was not authorized. This can be triggered by passing an invalid secret key in the authorization header or the lack of one"
+		when 404
+			raise error, "HTTP Code 404: Request could not be fulfilled as the request resource does not exist."
+		when 500, 501,502,503,504
+			raise error, "HTTP Code #{e.response.code}: Request could not be fulfilled due to an error on Paystack's end. This shouldn't happen so please report as soon as you encounter any instance of this."
+		else
+			raise error, "HTTP Code #{e.response.code}: #{e.response.body}"
 
-				end
+		end
 
 	end
 

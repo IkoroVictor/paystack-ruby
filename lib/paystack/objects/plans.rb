@@ -19,7 +19,7 @@ class PaystackPlans < PaystackBaseObject
 		PaystackPlans.list(paystack, page)
 	end
 
-protected
+	protected
 	def self.create(paystack, data)
 		initPostRequest(paystack, "#{API::PLAN_PATH}",  data)
 	end

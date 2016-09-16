@@ -25,11 +25,11 @@ class PaystackTransactions < PaystackBaseObject
 
 	def  chargeAuthorization(authorization_code, email,  amount,args = {})
 		PaystackTransactions.chargeAuthorization(
-			paystack,
-			authorization_code,
-			email,
-			amount,
-			args
+		paystack,
+		authorization_code,
+		email,
+		amount,
+		args
 		)
 	end
 
@@ -37,10 +37,10 @@ class PaystackTransactions < PaystackBaseObject
 
 	def PaystackTransactions.initializeTransaction(paystack, args)
 		initPostRequest(
-			paystack,
-			"#{API::TRANSACTION_PATH}/initialize",
-			args,
-			true
+		paystack,
+		"#{API::TRANSACTION_PATH}/initialize",
+		args,
+		true
 		)
 	end
 
@@ -49,13 +49,13 @@ class PaystackTransactions < PaystackBaseObject
 	end
 
 	def PaystackTransactions.get(paystack, transaction_id)
-	 	initGetRequest(paystack, "#{API::TRANSACTION_PATH}/#{transaction_id}")
+		initGetRequest(paystack, "#{API::TRANSACTION_PATH}/#{transaction_id}")
 	end
 
 	def PaystackTransactions.verify(paystack, transaction_reference)
 		initGetRequest(
-			paystack,
-			"#{API::TRANSACTION_PATH}/verify/#{transaction_reference}"
+		paystack,
+		"#{API::TRANSACTION_PATH}/verify/#{transaction_reference}"
 		)
 	end
 
@@ -64,17 +64,17 @@ class PaystackTransactions < PaystackBaseObject
 	end
 
 	def PaystackTransactions.chargeAuthorization(paystack, authorization_code,
-		 																						email, amount ,args = {})
+		email, amount ,args = {})
 		hash = {
 			authorization_code: authorization_code,
 			amount: amount,
 			email:email
 		}.merge(args)
 		initPostRequest(
-			paystack,
-			"#{API::TRANSACTION_PATH}/charge_authorization",
-			hash,
-			true
+		paystack,
+		"#{API::TRANSACTION_PATH}/charge_authorization",
+		hash,
+		true
 		)
 	end
 end
