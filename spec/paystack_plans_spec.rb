@@ -26,10 +26,8 @@ describe PaystackPlans do
 		plans = PaystackPlans.new(paystack)
 		expect(plans.nil?).to eq false
 		list =  plans.list(1)
-		#puts list
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
-		#puts temp
 		hash=plans.get(temp['id'])
 		#puts hash
 		expect(hash.nil?).to eq false
@@ -41,19 +39,16 @@ describe PaystackPlans do
 		plans = PaystackPlans.new(paystack)
 		expect(plans.nil?).to eq false
 		list =  plans.list(1)
-		#puts list
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
-		#puts temp
-		hash=plans.update(
+		hash = plans.update(
 			temp['id'],
 			:name => "Test Plan Updated",
 			:description => "Dev Test Plan Updated", 
 			:amount => 30000, #in KOBO
-			:interval => "monthly", #monthly, yearly, quarterly, weekly etc 
+			:interval => "monthly",
 			:currency => "NGN"
-
-			)
+	    )
 		puts hash
 		expect(hash.nil?).to eq false
 		expect(hash['data']['id'].nil?).to eq false
