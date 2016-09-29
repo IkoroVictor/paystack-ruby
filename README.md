@@ -239,7 +239,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 				:customer => "customer@email.com",
 				:plan => "123557, #plan id
-				:amount => 30000, #in KOBO
+				:amount => 30000 #in KOBO
 			)
 
 ```
