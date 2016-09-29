@@ -70,6 +70,70 @@ describe PaystackSubscriptions do
     expect(hash['data']['id'].nil?).to eq false
   end
 
+  it "should successfully disable a subscription" do
+      paystack = Paystack.new(public_test_key, private_test_key)
+      subscriptions = PaystackSubscriptions.new(paystack)
+      plans = PaystackPlans.new(paystack)
+
+
+      temp = Random.new_seed.to_s
+      plan = plans.create(
+          :name => "#{temp[0..6]} Test Plan",
+          :description => "Dev Test Plan Updated",
+          :amount => 30000, #in KOBO
+          :interval => "monthly", #monthly, yearly, quarterly, weekly etc
+          :currency => "NGN"
+
+      )
+
+      subscription = subscriptions.create(
+          :customer => "lol@gmail.com",
+          :plan => plan["data"]["plan_code"]
+      )
+
+      hash = subscriptions.disable(
+          :code => subscription["data"]["subscription_code"],
+          :token => subscription["data"]["email_token"]
+      )
+
+      expect(hash.nil?).to eq false
+      expect(hash['status']).to eq true
+  end
+
+  it "should successfully enable a subscription" do
+    paystack = Paystack.new(public_test_key, private_test_key)
+    subscriptions = PaystackSubscriptions.new(paystack)
+    plans = PaystackPlans.new(paystack)
+
+
+    temp = Random.new_seed.to_s
+    plan = plans.create(
+        :name => "#{temp[0..6]} Test Plan",
+        :description => "Dev Test Plan Updated",
+        :amount => 30000, #in KOBO
+        :interval => "monthly", #monthly, yearly, quarterly, weekly etc
+        :currency => "NGN"
+
+    )
+
+    subscription = subscriptions.create(
+        :customer => "lol@gmail.com",
+        :plan => plan["data"]["plan_code"]
+    )
+
+    subscriptions.disable(
+        :code => subscription["data"]["subscription_code"],
+        :token => subscription["data"]["email_token"]
+    )
+
+    hash =  subscriptions.enable(
+        :code => subscription["data"]["subscription_code"],
+        :token => subscription["data"]["email_token"]
+    )
+
+    expect(hash.nil?).to eq false
+    expect(hash['status']).to eq true
+  end
 
 
 end

@@ -50,7 +50,6 @@ describe PaystackPlans do
 	    )
 		puts hash
 		expect(hash.nil?).to eq false
-    puts hash
 		expect(hash['status']).to eq true
 	end
 
@@ -59,7 +58,6 @@ describe PaystackPlans do
 		plans = PaystackPlans.new(paystack)
 		expect(plans.nil?).to eq false
 		temp = Random.new_seed.to_s
-		#puts temp
 		hash=plans.create(
 			:name => "#{temp[0..6]} Test Plan",
 			:description => "Dev Test Plan Updated", 
@@ -68,7 +66,7 @@ describe PaystackPlans do
 			:currency => "NGN"
 
 			)
-		puts hash
+
 		expect(hash.nil?).to eq false
 		expect(hash['data']['id'].nil?).to eq false
 	end
