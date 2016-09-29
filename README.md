@@ -216,7 +216,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ```ruby
 
-	plan_id = ""123456778""
+	plan_id = ""123456778"
 	plans = PaystackPlans.new(paystackObj)
 	result = plans.update(
 			plan_id,
@@ -238,7 +238,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 	result = subscriptions.create(
 
 				:customer => "customer@email.com",
-				:plan => "123557, #plan id
+				:plan => "123557", #plan id
 				:amount => 30000 #in KOBO
 			)
 
