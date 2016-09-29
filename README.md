@@ -228,8 +228,60 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ```
 
 
+## Subscriptions
+
+### Create new subscription 
+
+```ruby
+
+	subscriptions = PaystackSubscriptions.new(paystackObj)
+	result = subscriptions.create(
+
+				:customer => "customer@email.com",
+				:plan => "123557, #plan id
+				:amount => 30000, #in KOBO
+			)
+
+```
+
+### Get subscription detail
+
+```ruby
+	
+	subscription_id = "123456778"
+	subscriptions = PaystackSubscriptions.new(paystackObj)
+	result = subscriptions.get(subscription_id) 
+	subscription =  result['data']
+
+```
+
+### Enable subscription
+
+```ruby
+
+	subscriptions = PaystackSubscriptions.new(paystackObj)
+	result = subscriptions.enable(
+				:code => "12328833",
+				:token => "EWFWKFJWE" #user email token
+			)
+
+```
+
+### Disable subscription
+
+```ruby
+
+	subscriptions = PaystackSubscriptions.new(paystackObj)
+	result = subscriptions.disable(
+				:code => "12328833",
+				:token => "EWFWKFJWE" #user email token
+			)
+
+```
+
+
 ## Static methods
-`PaystackTransactions`, `PaystackCustomers` and `PaystackPlans` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
+`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans` and `PaystackSubscriptions` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
 
 
 ```ruby
