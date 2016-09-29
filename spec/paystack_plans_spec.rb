@@ -29,7 +29,6 @@ describe PaystackPlans do
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
 		hash=plans.get(temp['id'])
-		#puts hash
 		expect(hash.nil?).to eq false
 		expect(hash['data']['id'].nil?).to eq false
 	end
@@ -51,7 +50,8 @@ describe PaystackPlans do
 	    )
 		puts hash
 		expect(hash.nil?).to eq false
-		expect(hash['data']['id'].nil?).to eq false
+    puts hash
+		expect(hash['status']).to eq true
 	end
 
 	it "should successfuly create a plan" do
