@@ -6,12 +6,12 @@ require 'paystack/version'
 Gem::Specification.new do |spec|
   spec.name          = "paystack"
   spec.version       = Paystack::VERSION
-  spec.authors       = ["Timi Ajiboye", "Victor Ikoro"]
-  spec.email         = ["timi@helloworld.ng"]
+  spec.authors       = ["Victor Ikoro"]
+  spec.email         = ["ikoro.victor@gmail.com"]
 
   spec.summary       = %q{PayStack.co gem for Ruby/Rails}
   spec.description   = %q{Client Library Gem for PayStack.co}
-  spec.homepage      = "https://github.com/timigod/paystack-ruby"
+  spec.homepage      = "https://github.com/IkoroVictor/paystack-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
