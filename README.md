@@ -1,7 +1,7 @@
 # Paystack
 
 
-A ruby gem for easy integration of [Paystack](https://paystack.co/).
+A ruby gem for easy integration of [Paystack](https://paystack.co/).  
 
 
 ## Installation
