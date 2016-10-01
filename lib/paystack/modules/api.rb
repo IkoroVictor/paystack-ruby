@@ -4,4 +4,5 @@ module API
 	TRANSACTION_PATH = "/transaction"
 	PLAN_PATH = "/plan"
 	CUSTOMER_PATH = "/customer"
+	SUBSCRIPTION_PATH = "/subscription"
 end

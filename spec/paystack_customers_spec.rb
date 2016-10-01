@@ -17,7 +17,6 @@ describe PaystackCustomers do
 		customers = PaystackCustomers.new(paystack)
 		expect(customers.nil?).to eq false
 		list =  customers.list(1)
-		#puts list
 		expect(list.nil?).to eq false
 	end
 
@@ -26,12 +25,9 @@ describe PaystackCustomers do
 		customers = PaystackCustomers.new(paystack)
 		expect(customers.nil?).to eq false
 		list =  customers.list(1)
-		#puts list
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
-		#puts temp
 		hash=customers.get(temp['id'])
-		#puts hash
 		expect(hash.nil?).to eq false
 		expect(hash['data']['id'].nil?).to eq false
 	end
@@ -41,12 +37,9 @@ describe PaystackCustomers do
 		customers = PaystackCustomers.new(paystack)
 		expect(customers.nil?).to eq false
 		list =  customers.list(1)
-		#puts list
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
-		#puts temp
 		hash=customers.update(temp['id'], :first_name => "Victor", :last_name => "Ikoro", :phone => "+2347061544884")
-		#puts hash
 		expect(hash.nil?).to eq false
 		expect(hash['data']['id'].nil?).to eq false
 	end
@@ -64,3 +57,4 @@ describe PaystackCustomers do
 
 
 end
+

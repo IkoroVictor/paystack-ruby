@@ -37,6 +37,4 @@ class PaystackPlans < PaystackBaseObject
 	end
 
 
-
-
 end

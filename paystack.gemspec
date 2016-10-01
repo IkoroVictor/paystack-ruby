@@ -6,7 +6,7 @@ require 'paystack/version'
 Gem::Specification.new do |spec|
   spec.name          = "paystack"
   spec.version       = Paystack::VERSION
-  spec.authors       = ["Victor"]
+  spec.authors       = ["Victor Ikoro"]
   spec.email         = ["ikoro.victor@gmail.com"]
 
   spec.summary       = %q{PayStack.co gem for Ruby/Rails}
@@ -22,9 +22,11 @@ Gem::Specification.new do |spec|
   #Dev dependencies
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 0"
-  
+  spec.add_development_dependency 'rspec', '~> 0'
+
   #Dependencies
-  spec.add_dependency "rest-client", '~> 1.8'
-  
+  spec.required_ruby_version = '>= 2.0.0'
+  spec.add_runtime_dependency 'rest-client', '~> 2.0'
+
+
 end

@@ -1,4 +1,3 @@
-
 class PaystackServerError < StandardError
 	attr_reader :response 
 	def initialize(response=nil)
