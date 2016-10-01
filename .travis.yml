@@ -5,6 +5,9 @@ rvm:
   - ruby
   - rbx-2
 before_install: gem install bundler
+cache:
+  directories:
+   - vendor/bundle
 
 script:
   - bundle exec rake -t
