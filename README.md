@@ -1,6 +1,6 @@
 # Paystack
 
-[![Build Status](https://travis-ci.org/IkoroVictor/paystack-ruby.svg?branch=master)](https://travis-ci.org/IkoroVictor/paystack-ruby)
+[![Build Status](https://travis-ci.org/IkoroVictor/paystack-ruby.svg?branch=master)](https://travis-ci.org/IkoroVictor/paystack-ruby) [![Gem Version](https://badge.fury.io/rb/paystack.svg)](https://badge.fury.io/rb/paystack)
 
 A ruby gem for easy integration of [Paystack](https://paystack.co/).  
 
