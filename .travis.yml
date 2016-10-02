@@ -2,8 +2,6 @@ sudo: required
 language: ruby
 rvm:
   - 2.0.0
-  - ruby
-  - rbx-2
 before_install: gem install bundler
 cache:
   directories:
