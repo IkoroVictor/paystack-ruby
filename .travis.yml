@@ -9,3 +9,7 @@ cache:
 
 script:
   - rspec
+  
+deploy:
+  provider: rubygems
+  api_key: "bcc5d3ff98af614e950b21a2df77af20"
