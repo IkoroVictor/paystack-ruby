@@ -10,4 +10,4 @@ cache:
    - vendor/bundle
 
 script:
-  - bundle exec rake -t
+  - bundle exec rake test
