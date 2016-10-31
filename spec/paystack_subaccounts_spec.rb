@@ -39,7 +39,7 @@ describe PaystackSubaccounts do
 		list =  subaccounts.list(1)
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
-		hash=subaccounts.update(temp['id'], :percentage_charge => 2.5)
+		hash=subaccounts.update(temp['id'], :percentage_charge => 2.5, :primary_contact_email => "xxxrr@gmail.com")
 		expect(hash.nil?).to eq false
 		expect(hash['data']['id'].nil?).to eq false
 	end
