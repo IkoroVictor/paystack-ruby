@@ -7,6 +7,7 @@ require 'paystack/objects/customers.rb'
 require 'paystack/objects/plans.rb'
 require 'paystack/objects/subscriptions.rb'
 require 'paystack/objects/transactions.rb'
+require 'paystack/objects/banks.rb'
 
 
 class Paystack
@@ -52,4 +53,3 @@ class Paystack
   end
 
 end
-
