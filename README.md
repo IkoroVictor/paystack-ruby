@@ -281,6 +281,9 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ```
 
 
+## Split Payments
+
+This Gem is also aware of the API calls that allow you to perform split payments on Paystack. The [Paystack documentation on split payments](https://developers.paystack.co/docs/split-payments-overview) can get you started. Below are some sample calls for [subaccounts](https://developers.paystack.co/docs/create-subaccount) and [banks](https://developers.paystack.co/docs/list-banks).
 
 ## Banks
 
@@ -294,10 +297,6 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 	banks_list = result['data']
 
 ```
-
-## Split Payments
-
-This Gem is also aware of the API calls that allow you to perform split payments on Paystack. The [Paystack documentation on split payments](https://developers.paystack.co/docs/split-payments-overview) can get you started. Below are some sample calls for [subaccounts](https://developers.paystack.co/docs/create-subaccount) and [banks](https://developers.paystack.co/docs/list-banks).
 
 ## Subaccounts
 
