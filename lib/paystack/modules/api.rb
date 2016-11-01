@@ -5,4 +5,6 @@ module API
 	PLAN_PATH = "/plan"
 	CUSTOMER_PATH = "/customer"
 	SUBSCRIPTION_PATH = "/subscription"
+	BANK_PATH = "/bank"
+	SUBACCOUNT_PATH = "/subaccount"
 end
