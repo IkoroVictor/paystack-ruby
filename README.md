@@ -281,8 +281,81 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ```
 
 
+
+## Banks
+
+### List Banks
+
+```ruby
+
+	page_number = 1
+	banks = PaystackBanks.new(paystackObj)
+	result = banks.list(page_number) 	#Optional `page_number` parameter,  50 items per page
+	banks_list = result['data']
+
+```
+
+## Split Payments
+
+This Gem is also aware of the API calls that allow you to perform split payments on Paystack. The [Paystack documentation on split payments](https://developers.paystack.co/docs/split-payments-overview) can get you started. Below are some sample calls for [subaccounts](https://developers.paystack.co/docs/create-subaccount) and [banks](https://developers.paystack.co/docs/list-banks).
+
+## Subaccounts
+
+### List Subaccounts
+
+```ruby
+
+	page_number = 1
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	result = subaccounts.list(page_number) 	#Optional `page_number` parameter,  50 items per page
+	subaccounts_list = result['data']
+
+```
+
+### Get a subaccount
+
+```ruby
+
+	subaccount_id = "123456778"
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	result = subaccounts.get(subaccount_id)
+	subaccount =  result['data']
+
+```
+
+### Create new subaccount
+
+```ruby
+
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	result = subaccounts.create(
+		:business_name => "Madam Ikoro Holdings",
+		:settlement_bank => "Providus Bank",
+		:account_number => "1170766666"
+		:percentage_charge => 3.2
+	)
+
+```
+
+### Update subaccount details
+
+```ruby
+
+	subaccount_id = "123456778"
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	# Updating primary contact name and email of subaccount
+	result = subaccounts.update(
+		subaccount_id,
+		:primary_contact_name => "Victoria Ikorodu",
+		:primary_contact_email => "xxxxx-modified@gmail.com"
+	)
+
+```
+
+
+
 ## Static methods
-`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans` and `PaystackSubscriptions` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
+`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans`, `PaystackSubaccounts`, `PaystackBanks` and `PaystackSubscriptions` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
 
 
 ```ruby
