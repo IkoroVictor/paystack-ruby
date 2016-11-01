@@ -44,7 +44,7 @@ It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot 
 
 
 
-### Initialize transaction and get Authorization URL 
+### Initialize transaction and get Authorization URL
 
 ```ruby
 
@@ -84,7 +84,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	page_number = 1
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.list(page_number) 	#Optional `page_number` parameter 
+	result = transactions.list(page_number) 	#Optional `page_number` parameter
 
 ```
 
@@ -94,7 +94,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	transaction_id = "123456778"
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.get(transaction_id) 
+	result = transactions.get(transaction_id)
 
 ```
 
@@ -104,7 +104,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.verify(transaction_reference) 
+	result = transactions.verify(transaction_reference)
 
 ```
 
@@ -114,7 +114,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ```ruby
 
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.totals() 
+	result = transactions.totals()
 
 ```
 
@@ -128,7 +128,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	page_number = 1
 	customers = PaystackCustomers.new(paystackObj)
-	result = customers.list(page_number) 	#Optional `page_number` parameter,  50 items per page 
+	result = customers.list(page_number) 	#Optional `page_number` parameter,  50 items per page
 	customers_list = result['data']
 
 ```
@@ -139,7 +139,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	customer_id = "123456778"
 	customers = PaystackCustomers.new(paystackObj)
-	result = customers.get(customer_id) 
+	result = customers.get(customer_id)
 	customer =  result['data']
 
 ```
@@ -169,7 +169,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 		customer_id,
 		:last_name => "Ikorodu",
 		:email => "xxxxx-modified@gmail.com"
-	) 
+	)
 
 ```
 
@@ -181,7 +181,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	page_number = 1
 	plans = PaystackPlans.new(paystackObj)
-	result = plans.list(page_number) 	#Optional `page_number` parameter,  50 items per page 
+	result = plans.list(page_number) 	#Optional `page_number` parameter,  50 items per page
 	plans_list = result['data']
 
 ```
@@ -192,12 +192,12 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	plan_id = "123456778"
 	plans = PaystackPlans.new(paystackObj)
-	result = plans.get(plan_id) 
+	result = plans.get(plan_id)
 	plan =  result['data']
 
 ```
 
-### Create new plan 
+### Create new plan
 
 ```ruby
 
@@ -205,9 +205,9 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 	result = plans.create(
 
 				:name => "Test Plan",
-				:description => "Dev Test Plan", 
+				:description => "Dev Test Plan",
 				:amount => 30000, #in KOBO
-				:interval => "monthly", #monthly, yearly, quarterly, weekly etc 
+				:interval => "monthly", #monthly, yearly, quarterly, weekly etc
 				:currency => "NGN"
 			)
 
@@ -217,13 +217,13 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ```ruby
 
-	plan_id = ""123456778"
+	plan_id = "123456778"
 	plans = PaystackPlans.new(paystackObj)
 	result = plans.update(
 			plan_id,
 			:name => "Test Plan Updated",
 			:amount => 500000, #in KOBO
-			:interval => "weekly" 
+			:interval => "weekly"
 			)
 
 ```
@@ -231,7 +231,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ## Subscriptions
 
-### Create new subscription 
+### Create new subscription
 
 ```ruby
 
@@ -248,10 +248,10 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ### Get subscription detail
 
 ```ruby
-	
+
 	subscription_id = "123456778"
 	subscriptions = PaystackSubscriptions.new(paystackObj)
-	result = subscriptions.get(subscription_id) 
+	result = subscriptions.get(subscription_id)
 	subscription =  result['data']
 
 ```
@@ -304,4 +304,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/IkoroV
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
