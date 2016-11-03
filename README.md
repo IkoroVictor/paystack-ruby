@@ -44,7 +44,7 @@ It throws a `PaystackBadKeyError` when either of the keys are invalid or cannot 
 
 
 
-### Initialize transaction and get Authorization URL 
+### Initialize transaction and get Authorization URL
 
 ```ruby
 
@@ -84,7 +84,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	page_number = 1
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.list(page_number) 	#Optional `page_number` parameter 
+	result = transactions.list(page_number) 	#Optional `page_number` parameter
 
 ```
 
@@ -94,7 +94,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	transaction_id = "123456778"
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.get(transaction_id) 
+	result = transactions.get(transaction_id)
 
 ```
 
@@ -104,7 +104,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	transaction_reference = "blablablabla-YOUR-VALID-UNIQUE-REFERENCE-HERE"
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.verify(transaction_reference) 
+	result = transactions.verify(transaction_reference)
 
 ```
 
@@ -114,7 +114,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ```ruby
 
 	transactions = PaystackTransactions.new(paystackObj)
-	result = transactions.totals() 
+	result = transactions.totals()
 
 ```
 
@@ -128,7 +128,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	page_number = 1
 	customers = PaystackCustomers.new(paystackObj)
-	result = customers.list(page_number) 	#Optional `page_number` parameter,  50 items per page 
+	result = customers.list(page_number) 	#Optional `page_number` parameter,  50 items per page
 	customers_list = result['data']
 
 ```
@@ -139,7 +139,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	customer_id = "123456778"
 	customers = PaystackCustomers.new(paystackObj)
-	result = customers.get(customer_id) 
+	result = customers.get(customer_id)
 	customer =  result['data']
 
 ```
@@ -169,7 +169,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 		customer_id,
 		:last_name => "Ikorodu",
 		:email => "xxxxx-modified@gmail.com"
-	) 
+	)
 
 ```
 
@@ -181,7 +181,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	page_number = 1
 	plans = PaystackPlans.new(paystackObj)
-	result = plans.list(page_number) 	#Optional `page_number` parameter,  50 items per page 
+	result = plans.list(page_number) 	#Optional `page_number` parameter,  50 items per page
 	plans_list = result['data']
 
 ```
@@ -192,12 +192,12 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 	plan_id = "123456778"
 	plans = PaystackPlans.new(paystackObj)
-	result = plans.get(plan_id) 
+	result = plans.get(plan_id)
 	plan =  result['data']
 
 ```
 
-### Create new plan 
+### Create new plan
 
 ```ruby
 
@@ -205,9 +205,9 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 	result = plans.create(
 
 				:name => "Test Plan",
-				:description => "Dev Test Plan", 
+				:description => "Dev Test Plan",
 				:amount => 30000, #in KOBO
-				:interval => "monthly", #monthly, yearly, quarterly, weekly etc 
+				:interval => "monthly", #monthly, yearly, quarterly, weekly etc
 				:currency => "NGN"
 			)
 
@@ -217,13 +217,13 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ```ruby
 
-	plan_id = ""123456778"
+	plan_id = "123456778"
 	plans = PaystackPlans.new(paystackObj)
 	result = plans.update(
 			plan_id,
 			:name => "Test Plan Updated",
 			:amount => 500000, #in KOBO
-			:interval => "weekly" 
+			:interval => "weekly"
 			)
 
 ```
@@ -231,7 +231,7 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 
 ## Subscriptions
 
-### Create new subscription 
+### Create new subscription
 
 ```ruby
 
@@ -248,10 +248,10 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ### Get subscription detail
 
 ```ruby
-	
+
 	subscription_id = "123456778"
 	subscriptions = PaystackSubscriptions.new(paystackObj)
-	result = subscriptions.get(subscription_id) 
+	result = subscriptions.get(subscription_id)
 	subscription =  result['data']
 
 ```
@@ -281,8 +281,80 @@ NOTE: Amount is in kobo i.e. `100000 = 100000 kobo = 1000 naira`
 ```
 
 
+## Split Payments
+
+This Gem is also aware of the API calls that allow you to perform split payments on Paystack. The [Paystack documentation on split payments](https://developers.paystack.co/docs/split-payments-overview) can get you started. Below are some sample calls for [subaccounts](https://developers.paystack.co/docs/create-subaccount) and [banks](https://developers.paystack.co/docs/list-banks).
+
+## Banks
+
+### List Banks
+
+```ruby
+
+	page_number = 1
+	banks = PaystackBanks.new(paystackObj)
+	result = banks.list(page_number) 	#Optional `page_number` parameter,  50 items per page
+	banks_list = result['data']
+
+```
+
+## Subaccounts
+
+### List Subaccounts
+
+```ruby
+
+	page_number = 1
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	result = subaccounts.list(page_number) 	#Optional `page_number` parameter,  50 items per page
+	subaccounts_list = result['data']
+
+```
+
+### Get a subaccount
+
+```ruby
+
+	subaccount_id = "123456778"
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	result = subaccounts.get(subaccount_id)
+	subaccount =  result['data']
+
+```
+
+### Create new subaccount
+
+```ruby
+
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	result = subaccounts.create(
+		:business_name => "Madam Ikoro Holdings",
+		:settlement_bank => "Providus Bank",
+		:account_number => "1170766666"
+		:percentage_charge => 3.2
+	)
+
+```
+
+### Update subaccount details
+
+```ruby
+
+	subaccount_id = "123456778"
+	subaccounts = PaystackSubaccounts.new(paystackObj)
+	# Updating primary contact name and email of subaccount
+	result = subaccounts.update(
+		subaccount_id,
+		:primary_contact_name => "Victoria Ikorodu",
+		:primary_contact_email => "xxxxx-modified@gmail.com"
+	)
+
+```
+
+
+
 ## Static methods
-`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans` and `PaystackSubscriptions` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
+`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans`, `PaystackSubaccounts`, `PaystackBanks` and `PaystackSubscriptions` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
 
 
 ```ruby
@@ -304,4 +376,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/IkoroV
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
