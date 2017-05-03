@@ -7,7 +7,8 @@ module API
 	SUBSCRIPTION_PATH = "/subscription"
 	BANK_PATH = "/bank"
 	SUBACCOUNT_PATH = "/subaccount"
-	TRANSFER_PATH = "/transfer"
+	BALANCE_PATH = "/balance"
 	RECIPIENT_PATH = "/transferrecipient"
-	
+	TRANSFER_PATH = "/transfer"
+	SETTLEMENT_PATH = "/settlement"
 end

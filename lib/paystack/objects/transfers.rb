@@ -18,15 +18,15 @@ class PaystackTransfers < PaystackBaseObject
 		return PaystackTransfers.authorize(@paystack,data)
 	end
 
-	def  resendOtp(transfer_code)
-		return PaystackTransfers.resendOtp(@paystack)
+	def  resendOtp(data={})
+		return PaystackTransfers.resendOtp(@paystack,data)
 	end
 
 	def  disableOtp 
 		return PaystackTransfers.disableOtp(@paystack)
 	end
 
-	def  confirmDisableOtp(otp)
+	def  confirmDisableOtp(data={})
 		return PaystackTransfers.confirmDisableOTP(@paystack,otp)
 	end
 
@@ -52,16 +52,16 @@ class PaystackTransfers < PaystackBaseObject
 		initPostRequest(paystackObj, "#{API::TRANSFER_PATH}/finalize_transfer/",data)
 	end
 
-	def PaystackTransfers.resendOtp(paystackObj, transfer_code)
-		initPostRequest(paystackObj, "#{API::TRANSFER_PATH}/resend_otp",transfer_code)
+	def PaystackTransfers.resendOtp(paystackObj, data={})
+		initPostRequest(paystackObj, "#{API::TRANSFER_PATH}/resend_otp",data)
 	end
 
 	def PaystackTransfers.disableOtp(paystackObj)
 		initPostRequest(paystackObj, "#{API::TRANSFER_PATH}/disable_otp")
 	end
 
-	def PaystackTransfers.confirmDisableOtp(paystackObj, otp)
-		initPostRequest(paystackObj, "#{API::TRANSFER_PATH}/disable_otp_finalize",otp)
+	def PaystackTransfers.confirmDisableOtp(paystackObj, data={})
+		initPostRequest(paystackObj, "#{API::TRANSFER_PATH}/disable_otp_finalize",data)
 	end
 
 	def PaystackTransfers.enableOtp(paystackObj)

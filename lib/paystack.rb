@@ -8,6 +8,10 @@ require 'paystack/objects/plans.rb'
 require 'paystack/objects/subscriptions.rb'
 require 'paystack/objects/transactions.rb'
 require 'paystack/objects/banks.rb'
+require 'paystack/objects/balance.rb'
+require 'paystack/objects/settlements.rb'
+require 'paystack/objects/recipients.rb'
+require 'paystack/objects/transfers.rb'
 
 
 class Paystack
