@@ -43,8 +43,6 @@ class Paystack
     unless @private_key[0..2] == 'sk_'
       raise PaystackBadKeyError, "Invalid private key #{@private_key}"
     end
-
-
   end
 
   #TODO delete if not used

@@ -12,8 +12,8 @@ class PaystackRecipients < PaystackBaseObject
   end
 
 
-  def PaystackRecipients.create(paystackObj, data)
-    initPostRequest(paystackObj, "#{API::RECIPIENT_PATH}", data)
+  def PaystackRecipients.create(paystackObj, data={})
+    initPostRequest(paystackObj, "#{API::RECIPIENT_PATH}", data, true)
   end
 
   def PaystackRecipients.list(paystackObj, page=1)

@@ -1,12 +1,12 @@
 require 'paystack/objects/base.rb'
 
 class PaystackSettlements < PaystackBaseObject
-	def list(data={})
-		return PaystackBanks.list(@paystack, data)
+	def list
+		return PaystackSettlements.list(@paystack)
 	end
 
 
-	def PaystackSettlements.list(paystackObj, data={})
-		initGetRequest(paystackObj, "#{API::SETTLEMENT_PATH}",data)
+	def PaystackSettlements.list(paystackObj)
+		initGetRequest(paystackObj, "#{API::SETTLEMENT_PATH}")
 	end
 end
