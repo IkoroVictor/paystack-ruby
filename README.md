@@ -366,7 +366,7 @@ Fetch settlements made to your bank accounts and the bank accounts for your suba
 
 ## Transfers
 
-The funds transfers feature enables you send money directly from your paystack balance to any Nigerian Bank account.. The [Paystack documentation on transfers](https://developers.paystack.co/docs/funds_transfers) can get you started. 
+The funds transfers feature enables you send money directly from your paystack balance to any Nigerian Bank account. The [Paystack documentation on transfers](https://developers.paystack.co/docs/funds_transfers) can get you started. 
 
 ## Balance
 
@@ -374,7 +374,7 @@ The funds transfers feature enables you send money directly from your paystack b
 
 ```ruby
 	
-	balance = PaystackBanks.new(paystackObj)
+	balance = PaystackBalance.new(paystackObj)
 	result = balance.get 	
 	account_balance = result['data']
 
@@ -411,7 +411,7 @@ The funds transfers feature enables you send money directly from your paystack b
 ```ruby
 
 	transfer_code = "TRF_uniquecode"
-	transactions = PaystackTransactions.new(paystackObj)
+	transactions = PaystackTransfers.new(paystackObj)
 	result = transactions.get(transaction_code)
 
 ```
