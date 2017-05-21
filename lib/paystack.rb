@@ -8,6 +8,10 @@ require 'paystack/objects/plans.rb'
 require 'paystack/objects/subscriptions.rb'
 require 'paystack/objects/transactions.rb'
 require 'paystack/objects/banks.rb'
+require 'paystack/objects/balance.rb'
+require 'paystack/objects/settlements.rb'
+require 'paystack/objects/recipients.rb'
+require 'paystack/objects/transfers.rb'
 
 
 class Paystack
@@ -39,8 +43,6 @@ class Paystack
     unless @private_key[0..2] == 'sk_'
       raise PaystackBadKeyError, "Invalid private key #{@private_key}"
     end
-
-
   end
 
   #TODO delete if not used

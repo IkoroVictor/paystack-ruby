@@ -351,10 +351,159 @@ This Gem is also aware of the API calls that allow you to perform split payments
 
 ```
 
+## Settlements  
+Fetch settlements made to your bank accounts and the bank accounts for your subaccounts
 
+### List settlements
+
+```ruby
+
+	settlements = PaystackSettlements.new(paystackObj)
+	results = settlements.list
+	settlements_list = result['data']
+
+```
+
+## Transfers
+
+The funds transfers feature enables you send money directly from your paystack balance to any Nigerian Bank account. The [Paystack documentation on transfers](https://developers.paystack.co/docs/funds_transfers) can get you started. 
+
+## Balance
+
+### Check Paystack Balance
+
+```ruby
+	
+	balance = PaystackBalance.new(paystackObj)
+	result = balance.get 	
+	account_balance = result['data']
+
+```
+
+## Transfers
+
+### Initialize a transfer
+
+```ruby
+	
+	transfer = PaystackTransfers.new(paystackObj)
+	results = transfers.initializeTransfer(
+		:source => "balance", # Must be balance
+		:reason => "Your reason",
+		:amount => 30000, # Amount in kobo
+		:recipient =>  recipient_code, # Unique recipient code
+		)
+
+```
+
+### List transfers
+
+```ruby
+
+	page_number = 1
+	transactions = PaystackTransfers.new(paystackObj)
+	result = transfers.list(page_number) 	#Optional `page_number` parameter
+
+```
+
+### Get a transfer
+
+```ruby
+
+	transfer_code = "TRF_uniquecode"
+	transactions = PaystackTransfers.new(paystackObj)
+	result = transactions.get(transaction_code)
+
+```
+
+### Finalize a transfer
+
+```ruby
+	
+	transfer = PaystackTransfers.new(paystackObj)
+	results = transfer.authorize(
+		:transfer_code => "TRF_blablabla", # Must be balance
+		:otp => "12350",
+		)
+
+```
+
+
+## Transfer Recipients
+
+### Create new recipient
+
+```ruby
+
+	recipient = PaystackRecipients.new(paystackObj)
+	result = recipients.create(
+		:type => "nuban", #Must be nuban
+		:name => "Test Plan",
+		:description => "Bla-bla-bla", 
+		:account_number => 0123456789, #10 digit account number
+		:bank_code => "044", #monthly, yearly, quarterly, weekly etc 
+		:currency => "NGN",
+
+	)
+	
+```
+
+### List transfer recipients
+
+```ruby
+	page_number = 1
+	recipients = PaystackRecipients.new(paystackObj)
+	result = recipients.list(page_number) #Optional `page_number` parameter,  50 items per page
+	recipients_list =  result['data']
+
+```
+
+## Transfer Control
+
+### Resend OTP
+
+```ruby
+	transfer_code = "TRF_asdfghjkl"	#A unique Transfer code is generated when transfer is created
+	transfer = PaystackTransfers.new(paystackObj)
+	result = transfer.resendOtp(transfer_code) 	
+	
+
+```
+
+### Disable OTP for transfers
+
+```ruby
+
+	transfer = PaystackTransfers.new(paystackObj)
+	result = transfer.disableOtp  
+	#OTP is sent to the registered phone number of the account
+
+```
+
+### Confirm disabling of OTP for transfers
+
+```ruby
+
+	otp = "12345"
+	transfer = PaystackTransfers.new(paystackObj)
+	# Updating primary contact name and email of subaccount
+	result = transfer.confirmDisableOtp(
+		:otp => otp, #Must be valid OTP sent to the registered phone number
+	)
+
+```
+
+### Enable OTP for transfers
+
+```ruby
+
+	transfer = PaystackTransfers.new(paystackObj)
+	result = transfer.enableOtp
+
+```
 
 ## Static methods
-`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans`, `PaystackSubaccounts`, `PaystackBanks` and `PaystackSubscriptions` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
+`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans`, `PaystackSubaccounts`, `PaystackBanks` , `PaystackSubscriptions` , `PaystackSettlements`, `PaystackBalance`, and `PaystackTransfers` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
 
 
 ```ruby
