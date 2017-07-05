@@ -65,6 +65,8 @@ describe PaystackSubscriptions do
         :customer => "lol@gmail.com",
         :plan => plan["data"]["plan_code"]
     )
+    
+    puts hash
 
     expect(hash.nil?).to eq false
     expect(hash['data']['id'].nil?).to eq false
