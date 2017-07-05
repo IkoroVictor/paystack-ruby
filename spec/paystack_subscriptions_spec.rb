@@ -38,7 +38,9 @@ describe PaystackSubscriptions do
 
 
     hash = subscriptions.get(subscription['data']['id'])
-
+    
+    puts hash
+    
     expect(hash.nil?).to eq false
     expect(hash['data']['id'].nil?).to eq false
   end
