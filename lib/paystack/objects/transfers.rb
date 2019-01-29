@@ -1,7 +1,7 @@
 require 'paystack/objects/base.rb'
 
 class PaystackTransfers < PaystackBaseObject
-	
+
 	def initializeTransfer(args={})
 		return PaystackTransfers.initializeTransfer(@paystack, args)
 	end
@@ -14,6 +14,10 @@ class PaystackTransfers < PaystackBaseObject
 		return PaystackTransfers.get(@paystack, transfer_code)
 	end
 
+	def verify(reference)
+		return PaystackTransfers.verify(@paystack, reference)
+	end
+
 	def authorize(data={})
 		return PaystackTransfers.authorize(@paystack,data)
 	end
@@ -22,7 +26,7 @@ class PaystackTransfers < PaystackBaseObject
 		return PaystackTransfers.resendOtp(@paystack,data)
 	end
 
-	def  disableOtp 
+	def  disableOtp
 		return PaystackTransfers.disableOtp(@paystack)
 	end
 
@@ -30,7 +34,7 @@ class PaystackTransfers < PaystackBaseObject
 		return PaystackTransfers.confirmDisableOTP(@paystack,otp)
 	end
 
-	def  enableOtp 
+	def  enableOtp
 		return PaystackTransfers.enableOtp(@paystack)
 	end
 
@@ -40,12 +44,16 @@ class PaystackTransfers < PaystackBaseObject
 		initPostRequest(paystackObj,"#{API::TRANSFER_PATH}", args,true)
 	end
 
-	def PaystackTransfers.list(paystackObj, page=1)		
+	def PaystackTransfers.list(paystackObj, page=1)
 		initGetRequest(paystackObj, "#{API::TRANSFER_PATH}?page=#{page}")
 	end
 
 	def PaystackTransfers.get(paystackObj, transfer_code)
-	 	initGetRequest(paystackObj, "#{API::TRANSFER_PATH}/#{transfer_code}")
+		initGetRequest(paystackObj, "#{API::TRANSFER_PATH}/#{transfer_code}")
+	end
+
+	def PaystackTransfers.verify(paystackObj, reference)
+		initGetRequest(paystackObj, "#{API::TRANSFER_PATH}/verify/#{reference}")
 	end
 
 	def PaystackTransfers.authorize(paystackObj, data={})
@@ -70,6 +78,6 @@ class PaystackTransfers < PaystackBaseObject
 
 
 
- 
+
 
 end
