@@ -412,7 +412,17 @@ The funds transfers feature enables you send money directly from your paystack b
 
 	transfer_code = "TRF_uniquecode"
 	transactions = PaystackTransfers.new(paystackObj)
-	result = transactions.get(transaction_code)
+	result = transactions.get(transfer_code)
+
+```
+
+### Verify a transfer
+
+```ruby
+
+	reference = "unique_reference"
+	transactions = PaystackTransfers.new(paystackObj)
+	result = transactions.verify(reference)
 
 ```
 
