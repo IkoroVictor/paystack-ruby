@@ -12,6 +12,7 @@ require 'paystack/objects/balance.rb'
 require 'paystack/objects/settlements.rb'
 require 'paystack/objects/recipients.rb'
 require 'paystack/objects/transfers.rb'
+require 'paystack/objects/subaccounts.rb'
 
 
 class Paystack
