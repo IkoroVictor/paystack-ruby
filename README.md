@@ -401,7 +401,7 @@ The funds transfers feature enables you send money directly from your paystack b
 ```ruby
 
 	page_number = 1
-	transactions = PaystackTransfers.new(paystackObj)
+	transfers = PaystackTransfers.new(paystackObj)
 	result = transfers.list(page_number) 	#Optional `page_number` parameter
 
 ```
@@ -436,7 +436,7 @@ The funds transfers feature enables you send money directly from your paystack b
 ```ruby
 
 	recipient = PaystackRecipients.new(paystackObj)
-	result = recipients.create(
+	result = recipient.create(
 		:type => "nuban", #Must be nuban
 		:name => "Test Plan",
 		:description => "Bla-bla-bla", 
