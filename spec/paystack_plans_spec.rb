@@ -45,7 +45,7 @@ describe PaystackPlans do
 			:name => "Test Plan Updated",
 			:description => "Dev Test Plan Updated", 
 			:amount => 30000, #in KOBO
-			:interval => "monthly",
+      #:interval => "monthly",
 			:currency => "NGN"
 	    )
 		puts hash

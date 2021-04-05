@@ -81,7 +81,7 @@ describe PaystackTransactions do
 		#TODO: Manually get valid reference for this test 
 		# i.e Initailize transaction with your reference, redirect to authorization url, fill card details,
 		# if transaction successful, replace your reference with the value below	
-		reference = "2425847597"  
+		reference = "c2v7vxelg2"
 
 		paystack = Paystack.new(public_test_key, private_test_key)
 		transactions = PaystackTransactions.new(paystack)
