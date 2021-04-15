@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/IkoroVictor/paystack-ruby.svg?branch=master)](https://travis-ci.org/IkoroVictor/paystack-ruby) [![Gem Version](https://badge.fury.io/rb/paystack.svg)](https://badge.fury.io/rb/paystack)
 
-A ruby gem for easy integration of [Paystack](https://paystack.co/).  
+A ruby gem for easy integration of [Paystack](https://paystack.co/).
 
 
 ## Installation
@@ -330,7 +330,7 @@ This Gem is also aware of the API calls that allow you to perform split payments
 	result = subaccounts.create(
 		:business_name => "Madam Ikoro Holdings",
 		:settlement_bank => "Providus Bank",
-		:account_number => "1170766666"
+		:account_number => "1170766666",
 		:percentage_charge => 3.2
 	)
 
@@ -351,7 +351,7 @@ This Gem is also aware of the API calls that allow you to perform split payments
 
 ```
 
-## Settlements  
+## Settlements
 Fetch settlements made to your bank accounts and the bank accounts for your subaccounts
 
 ### List settlements
@@ -366,16 +366,16 @@ Fetch settlements made to your bank accounts and the bank accounts for your suba
 
 ## Transfers
 
-The funds transfers feature enables you send money directly from your paystack balance to any Nigerian Bank account. The [Paystack documentation on transfers](https://developers.paystack.co/docs/funds_transfers) can get you started. 
+The funds transfers feature enables you send money directly from your paystack balance to any Nigerian Bank account. The [Paystack documentation on transfers](https://developers.paystack.co/docs/funds_transfers) can get you started.
 
 ## Balance
 
 ### Check Paystack Balance
 
 ```ruby
-	
+
 	balance = PaystackBalance.new(paystackObj)
-	result = balance.get 	
+	result = balance.get
 	account_balance = result['data']
 
 ```
@@ -385,7 +385,7 @@ The funds transfers feature enables you send money directly from your paystack b
 ### Initialize a transfer
 
 ```ruby
-	
+
 	transfer = PaystackTransfers.new(paystackObj)
 	results = transfers.initializeTransfer(
 		:source => "balance", # Must be balance
@@ -395,6 +395,32 @@ The funds transfers feature enables you send money directly from your paystack b
 		)
 
 ```
+
+
+
+### Bulk transfer
+
+```ruby
+
+	transfer = PaystackTransfers.new(paystackObj)
+	results = transfers.initializeBulkTransfer(
+		:source => "balance", # Must be balance
+		:transfer => [
+			{
+				:reason => "Your reason",
+				:amount => 30000, # Amount in kobo
+				:recipient =>  recipient_code, # Unique recipient code
+			},
+			{
+				:reason => "Your reason",
+				:amount => 30000, # Amount in kobo
+				:recipient =>  recipient_code, # Unique recipient code
+			},
+		]
+	)
+
+```
+
 
 ### List transfers
 
@@ -419,7 +445,7 @@ The funds transfers feature enables you send money directly from your paystack b
 ### Finalize a transfer
 
 ```ruby
-	
+
 	transfer = PaystackTransfers.new(paystackObj)
 	results = transfer.authorize(
 		:transfer_code => "TRF_blablabla", # Must be balance
@@ -439,13 +465,13 @@ The funds transfers feature enables you send money directly from your paystack b
 	result = recipient.create(
 		:type => "nuban", #Must be nuban
 		:name => "Test Plan",
-		:description => "Bla-bla-bla", 
+		:description => "Bla-bla-bla",
 		:account_number => 0123456789, #10 digit account number
-		:bank_code => "044", #monthly, yearly, quarterly, weekly etc 
+		:bank_code => "044", #monthly, yearly, quarterly, weekly etc
 		:currency => "NGN",
 
 	)
-	
+
 ```
 
 ### List transfer recipients
@@ -465,8 +491,8 @@ The funds transfers feature enables you send money directly from your paystack b
 ```ruby
 	transfer_code = "TRF_asdfghjkl"	#A unique Transfer code is generated when transfer is created
 	transfer = PaystackTransfers.new(paystackObj)
-	result = transfer.resendOtp(transfer_code) 	
-	
+	result = transfer.resendOtp(transfer_code)
+
 
 ```
 
@@ -475,7 +501,7 @@ The funds transfers feature enables you send money directly from your paystack b
 ```ruby
 
 	transfer = PaystackTransfers.new(paystackObj)
-	result = transfer.disableOtp  
+	result = transfer.disableOtp
 	#OTP is sent to the registered phone number of the account
 
 ```
