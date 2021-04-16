@@ -1,9 +1,13 @@
 require 'paystack/objects/base.rb'
 
 class PaystackTransfers < PaystackBaseObject
-	
+
 	def initializeTransfer(args={})
 		return PaystackTransfers.initializeTransfer(@paystack, args)
+	end
+
+	def initializeBulkTransfer(args={})
+		return PaystackTransfers.initializeBulkTransfer(@paystack, args)
 	end
 
 	def list(page=1)
@@ -22,7 +26,7 @@ class PaystackTransfers < PaystackBaseObject
 		return PaystackTransfers.resendOtp(@paystack,data)
 	end
 
-	def  disableOtp 
+	def  disableOtp
 		return PaystackTransfers.disableOtp(@paystack)
 	end
 
@@ -30,7 +34,7 @@ class PaystackTransfers < PaystackBaseObject
 		return PaystackTransfers.confirmDisableOTP(@paystack,otp)
 	end
 
-	def  enableOtp 
+	def  enableOtp
 		return PaystackTransfers.enableOtp(@paystack)
 	end
 
@@ -40,7 +44,11 @@ class PaystackTransfers < PaystackBaseObject
 		initPostRequest(paystackObj,"#{API::TRANSFER_PATH}", args,true)
 	end
 
-	def PaystackTransfers.list(paystackObj, page=1)		
+	def PaystackTransfers.initializeBulkTransfer(paystackObj, args)
+		initPostRequest(paystackObj,"#{API::TRANSFER_PATH}/bulk", args,true)
+	end
+
+	def PaystackTransfers.list(paystackObj, page=1)
 		initGetRequest(paystackObj, "#{API::TRANSFER_PATH}?page=#{page}")
 	end
 
@@ -70,6 +78,6 @@ class PaystackTransfers < PaystackBaseObject
 
 
 
- 
+
 
 end
