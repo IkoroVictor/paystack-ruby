@@ -11,7 +11,7 @@ class PaystackRefunds < PaystackBaseObject
   end
 
   def get(refund_id)
-    return PaystackRefunds.get(@paystack, refund_id
+    return PaystackRefunds.get(@paystack, refund_id)
   end
 
 # => Public Static methods
