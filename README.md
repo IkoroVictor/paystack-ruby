@@ -437,8 +437,8 @@ The funds transfers feature enables you send money directly from your paystack b
 ```ruby
 
 	transfer_code = "TRF_uniquecode"
-	transactions = PaystackTransfers.new(paystackObj)
-	result = transactions.get(transaction_code)
+	transfer = PaystackTransfers.new(paystackObj)
+	result = transfer.get(transfer_code)
 
 ```
 
@@ -525,6 +525,44 @@ The funds transfers feature enables you send money directly from your paystack b
 
 	transfer = PaystackTransfers.new(paystackObj)
 	result = transfer.enableOtp
+
+```
+
+## Refunds
+
+### Create a refund
+
+```ruby
+
+ refund = PaystackRefunds.new(paystackObj)
+
+ #full refund
+ transaction = {transaction: transaction_reference}
+ refund.createRefund(transaction) #must be a valid transaction reference or transaction id
+
+ #partial refund
+ transaction = {transaction: transaction_reference, amount: 5000} # minimum amount 50 NGN or 5000 kobos
+ refund.createRefund(transaction)
+
+```
+
+### List refunds
+
+```ruby
+
+	page_number = 1
+ 	refund = PaystackRefunds.new(paystackObj)
+	refund.list(page_number) # page_number is optional
+
+```
+
+
+### Fetch refund
+
+```ruby
+
+ 	refund = PaystackRefunds.new(paystackObj)
+	refund.get(refund_id) # returned at the time of creating a refund
 
 ```
 

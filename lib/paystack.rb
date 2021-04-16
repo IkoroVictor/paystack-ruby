@@ -13,7 +13,7 @@ require 'paystack/objects/settlements.rb'
 require 'paystack/objects/recipients.rb'
 require 'paystack/objects/transfers.rb'
 require 'paystack/objects/subaccounts.rb'
-
+require 'paystack/objects/refunds.rb'
 
 class Paystack
   attr_reader :public_key, :private_key
