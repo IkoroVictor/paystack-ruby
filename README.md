@@ -567,7 +567,7 @@ The funds transfers feature enables you send money directly from your paystack b
 ```
 
 ## Static methods
-`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans`, `PaystackSubaccounts`, `PaystackBanks` , `PaystackSubscriptions` , `PaystackSettlements`, `PaystackBalance`, and `PaystackTransfers` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
+`PaystackTransactions`, `PaystackCustomers`, `PaystackPlans`, `PaystackSubaccounts`, `PaystackRefunds`, `PaystackBanks` , `PaystackSubscriptions` , `PaystackSettlements`, `PaystackBalance`, and `PaystackTransfers` methods can be called statically, You just need to pass the paystack object as the first parameter  e.g. `verify` method in `PaystackTransactions` can be called like this
 
 
 ```ruby
