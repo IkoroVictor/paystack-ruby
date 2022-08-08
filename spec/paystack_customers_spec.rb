@@ -27,9 +27,10 @@ describe PaystackCustomers do
 		list =  customers.list(1)
 		expect(list.nil?).to eq false
 		temp = list["data"][0]
-		hash=customers.get(temp['id'])
+    puts temp.inspect
+		hash=customers.get(temp['customer_code'])
 		expect(hash.nil?).to eq false
-		expect(hash['data']['id'].nil?).to eq false
+		expect(hash['data']['customer_code'].nil?).to eq false
 	end
 
 	it "should successfuly update a customer" do
